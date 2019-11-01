@@ -1,0 +1,1 @@
+// display the home page that should contain the authentication
