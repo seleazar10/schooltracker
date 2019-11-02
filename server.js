@@ -1,25 +1,33 @@
+//Dependencies
 const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
+const routes = require("./routes/apiRoutes");
+const mongoose = require("mongoose");
+
+// Initialize Express
 const app = express();
 
-// Define middleware here
+//Require all models
+const db = require("./models");
+
+//Established a port to listen on
+var PORT = process.env.PORT || 3000;
+
+//Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
 
-// Define API routes here
-app.use(catsRoutes);
+//API routes
+routes(app);
 
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+//If deployed, use the deployed database. Otherwise us the local mongHeadlines database
+// db = process.env.MONGODB_URI || "mongodb://localhost/schoolTracker";
+
+//Connect to the MongoDB with Heroku settings
+mongoose.connect("mongodb://localhost/schoolTracker", {
+  useNewUrlParser: true
 });
 
+// Start the server
 app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+  console.log(`🌏 App is now listening on PORT: ${PORT}!!!`);
 });
