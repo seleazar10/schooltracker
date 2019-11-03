@@ -18,8 +18,10 @@ module.exports = app => {
 
   //Get Teacher by id api route
   app.get("/teacher/:id", function(req, res) {
+    console.log("LOOKING FOR TEACHER BY ID");
     db.Teacher.findOne({ _id: req.params.id })
       .then(function(dbTeacher) {
+        console.log(`Teacher Data: ${dbTeacher}`);
         res.json(dbTeacher);
       })
       .catch(function(err) {
@@ -63,6 +65,169 @@ module.exports = app => {
       .catch(function(err) {
         res.json(err);
       });
+  });
+
+  //Update a Student Object
+  app.put("/studentupdate/:id", function(req, res) {
+    let id = req.params.id;
+    db.Student.findOne({ _id: id }, function(err, foundObject) {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+      } else {
+        if (!foundObject) {
+          res.status(404).send();
+        } else {
+          if (req.body.name) {
+            foundObject.name = req.body.name;
+          }
+          if (req.body.pillar1) {
+            foundObject.pillar1 = req.body.pillar1;
+          }
+          if (req.body.pillar2) {
+            foundObject.pillar2 = req.body.pillar2;
+          }
+          if (req.body.pillar3) {
+            foundObject.pillar3 = req.body.pillar3;
+          }
+          if (req.body.pillar4) {
+            foundObject.pillar4 = req.body.pillar4;
+          }
+          if (req.body.pillar5) {
+            foundObject.pillar5 = req.body.pillar5;
+          }
+          if (req.body.pillar6) {
+            foundObject.pillar6 = req.body.pillar6;
+          }
+          if (req.body.pillar7) {
+            foundObject.pillar7 = req.body.pillar7;
+          }
+          if (req.body.pillar8) {
+            foundObject.pillar8 = req.body.pillar8;
+          }
+          if (req.body.pillar9) {
+            foundObject.pillar9 = req.body.pillar9;
+          }
+          if (req.body.pillar10) {
+            foundObject.pillar10 = req.body.pillar10;
+          }
+          if (req.body.pillar1Notes) {
+            foundObject.pillar1Notes = req.body.pillar1Notes;
+          }
+          if (req.body.pillar2Notes) {
+            foundObject.pillar2Notes = req.body.pillar2Notes;
+          }
+          if (req.body.pillar3Notes) {
+            foundObject.pillar3Notes = req.body.pillar3Notes;
+          }
+          if (req.body.pillar4Notes) {
+            foundObject.pillar4Notes = req.body.pillar4Notes;
+          }
+          if (req.body.pillar5Notes) {
+            foundObject.pillar5Notes = req.body.pillar5Notes;
+          }
+          if (req.body.pillar6Notes) {
+            foundObject.pillar6Notes = req.body.pillar6Notes;
+          }
+          if (req.body.pillar7Notes) {
+            foundObject.pillar7Notes = req.body.pillar7Notes;
+          }
+          if (req.body.pillar8Notes) {
+            foundObject.pillar8Notes = req.body.pillar8Notes;
+          }
+          if (req.body.pillar9Notes) {
+            foundObject.pillar9Notes = req.body.pillar9Notes;
+          }
+          if (req.body.pillar10Notes) {
+            foundObject.pillar10Notes = req.body.pillar10Notes;
+          }
+          if (req.body.comments) {
+            foundObject.comments = req.body.comments;
+          }
+          if (req.body.teacherIds) {
+            foundObject.teacherIds = req.body.teacherIds;
+          }
+          if (req.body.username) {
+            foundObject.username = req.body.username;
+          }
+          if (req.body.password) {
+            foundObject.password = req.body.password;
+          }
+
+          foundObject.save(function(err, updatedOject) {
+            if (err) {
+              console.log(err);
+              res.status(500).send();
+            } else {
+              res.send(updatedOject);
+            }
+          });
+        }
+      }
+    });
+  });
+
+  //   //find by teacher id and update and push in array
+
+  //   app.put("/teacher/studentupdate/:id", function(req, res) {
+  //     let id = req.params.id;
+  //     db.Teacher.findByIdAndUpdate(id,
+  //     {$push: {studentIds: studentId}},
+  //   {safe: true, upsert: true},
+  // function(err, foundObject) {
+  //   if(err){
+  //     console.log(err);
+  //   } else {
+
+  //   }
+  // })
+
+  //Updates the students the teacher has
+  app.put("/api/teacher/:id", function(req, res) {
+    let id = req.params.id;
+    db.Teacher.findOne({ _id: id }, function(err, foundObject) {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+      } else {
+        if (!foundObject) {
+          res.status(404).send();
+        } else {
+          if (req.body.aboutMe) {
+            foundObject.aboutMe = req.body.aboutMe;
+          }
+          if (req.body.classroomSubject) {
+            foundObject.classroomSubject = req.body.classroomSubject;
+          }
+          if (req.body.email) {
+            foundObject.email = req.body.email;
+          }
+          if (req.body.name) {
+            foundObject.name = req.body.name;
+          }
+          if (req.body.password) {
+            foundObject.password = req.body.password;
+          }
+          if (req.body.studentIds) {
+            foundObject.studentIds = req.body.studentIds;
+          }
+          if (req.body.teacherId) {
+            foundObject.teacherId = req.body.teacherId;
+          }
+          if (req.body.username) {
+            foundObject.username = req.body.username;
+          }
+          foundObject.save(function(err, updatedOject) {
+            if (err) {
+              console.log(err);
+              res.status(500).send();
+            } else {
+              res.send(updatedOject);
+            }
+          });
+        }
+      }
+    });
   });
 
   //Create student api route
