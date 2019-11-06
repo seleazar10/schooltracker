@@ -24,6 +24,7 @@ routes(app);
 
 //Connect to the MongoDB with Heroku settings
 mongoose.connect("mongodb://localhost/schoolTracker", {
+  useUnifiedTopology: true,
   useNewUrlParser: true
 });
 
