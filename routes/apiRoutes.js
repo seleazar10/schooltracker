@@ -6,10 +6,9 @@ module.exports = app => {
     res.send("Hello 🌏! Keep on Turning⚡️⚡️!");
   });
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //>>>>>>>>>>>>>teacher>>>>>>>>>>>>>>>>>>
   // Displays all teachers
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.get("/api/teacher/all/", function(req, res) {
+  app.get("/api/teachers/", function(req, res) {
     db.Teacher.find({}, function(error, teachers) {
       if (error) {
         console.log(error);
@@ -17,10 +16,8 @@ module.exports = app => {
     });
   });
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   //Get Teacher by id api route
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.get("/api/teacher/:id", function(req, res) {
+  app.get("/teacher/:id", function(req, res) {
     console.log("LOOKING FOR TEACHER BY ID");
     db.Teacher.findOne({ _id: req.params.id })
       .then(function(dbTeacher) {
@@ -32,48 +29,12 @@ module.exports = app => {
       });
   });
 
-  //>>>>>>>>>>>Linking StudenIds to Teacher Model>>>>>>>>>>>>>>>>>>>
-  //update student id  in Teacher model
-  // Route for saving/updating an Teacher's associated Student
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.post("/api/teacher/:id", function(req, res) {
-    // TODO
-    // ====
-    // save the new studentId that gets posted to the Student collection
-    db.Student.create(req.body)
-      .then(function(data) {
-        return db.Teacher.findOneAndUpdate(
-          { _id: req.params.id },
-          { $push: { studentIds: data.id } },
-          { new: true }
-        );
-      })
-      .then(function(dbTeacher) {
-        res.json(dbTeacher);
-      })
-      .catch(function(err) {
-        res.json(err);
-      });
-    // then find an teacher from the req.params.id
-    // and update it's "studentIds" property with the _id of the new student
-  });
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // Works = Keep Me!
-  //Add a teacherId to a specific student
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.put("/api/studentadd/:id", function(req, res) {
-    let id = req.params.id;
-    db.Student.updateOne({ _id: id }, { $push: req.body })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  });
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // //Create teacher
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // //Create teacher api routes
   app.post("/api/teacher/", function(req, res) {
     let newTeacher = req.body;
+    newTeacher.studentIds = [newTeacher.studentIds];
+    // newStudent.classroomId = newStudent.classroomId;
+
     db.Teacher.create(newTeacher)
       .then(function(dbTeacher) {
         return res.json(dbTeacher);
@@ -84,55 +45,10 @@ module.exports = app => {
       });
   });
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  //Update Teacher object api route
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.put("/api/teacher/:id", function(req, res) {
-    let id = req.params.id;
-    db.Teacher.findOne({ _id: id }, function(err, foundObject) {
-      if (err) {
-        console.log(err);
-        res.status(500).send();
-      } else {
-        if (!foundObject) {
-          res.status(404).send();
-        } else {
-          if (req.body.aboutMe) {
-            foundObject.aboutMe = req.body.aboutMe;
-          }
-          if (req.body.classroomSubject) {
-            foundObject.classroomSubject = req.body.classroomSubject;
-          }
-          if (req.body.email) {
-            foundObject.email = req.body.email;
-          }
-          if (req.body.name) {
-            foundObject.name = req.body.name;
-          }
-          if (req.body.password) {
-            foundObject.password = req.body.password;
-          }
+  //>>>>>>>>>>>>student>>>>>>>>>>>>>>>>>>>>
 
-          if (req.body.username) {
-            foundObject.username = req.body.username;
-          }
-          foundObject.save(function(err, updatedOject) {
-            if (err) {
-              console.log(err);
-              res.status(500).send();
-            } else {
-              res.send(updatedOject);
-            }
-          });
-        }
-      }
-    });
-  });
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // Displays all students
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.get("/api/student/all/", function(req, res) {
+  app.get("/api/students/", function(req, res) {
     db.Student.find({}, function(error, students) {
       if (error) {
         console.log(error);
@@ -140,10 +56,8 @@ module.exports = app => {
     });
   });
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   //Get student by id api route
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.get("/api/student/:id", function(req, res) {
+  app.get("/student/:id", function(req, res) {
     db.Student.findOne({ _id: req.params.id })
       .then(function(dbStudent) {
         res.json(dbStudent);
@@ -153,26 +67,8 @@ module.exports = app => {
       });
   });
 
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  //Create student api route
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.post("/api/student/", function(req, res) {
-    let newStudent = req.body;
-    console.log(`New Student added: ${newStudent}`);
-    db.Student.create(newStudent)
-      .then(function(dbStudent) {
-        return res.json(dbStudent);
-      })
-      .catch(err => {
-        console.log("ERROR ON STUDENT FIND", err);
-        res.json(err.message);
-      });
-  });
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   //Update a Student Object
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  app.put("/api/student/update/:id", function(req, res) {
+  app.put("/studentupdate/:id", function(req, res) {
     let id = req.params.id;
     db.Student.findOne({ _id: id }, function(err, foundObject) {
       if (err) {
@@ -271,92 +167,154 @@ module.exports = app => {
     });
   });
 
-  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  //upload photos
-  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //   //find by teacher id and update and push in array
 
-  // app.post("/upload", upload.single("file"), function(req, res, next) {
-  //   console.log(req.file);
-  //   if (!req.file) {
-  //     res.status(500);
-  //     return next(err);
+  //   app.put("/teacher/studentupdate/:id", function(req, res) {
+  //     let id = req.params.id;
+  //     db.Teacher.findByIdAndUpdate(id,
+  //     {$push: {studentIds: studentId}},
+  //   {safe: true, upsert: true},
+  // function(err, foundObject) {
+  //   if(err){
+  //     console.log(err);
+  //   } else {
+
   //   }
-  //   res.json({
-  //     fileUrl: "http://192.168.0.7:3000/images/" + req.file.filename
-  //   });
-  // });
+  // })
+
+  //Updates the students the teacher has
+  app.put("/api/teacher/:id", function(req, res) {
+    let id = req.params.id;
+    db.Teacher.findOne({ _id: id }, function(err, foundObject) {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+      } else {
+        if (!foundObject) {
+          res.status(404).send();
+        } else {
+          if (req.body.aboutMe) {
+            foundObject.aboutMe = req.body.aboutMe;
+          }
+          if (req.body.classroomSubject) {
+            foundObject.classroomSubject = req.body.classroomSubject;
+          }
+          if (req.body.email) {
+            foundObject.email = req.body.email;
+          }
+          if (req.body.name) {
+            foundObject.name = req.body.name;
+          }
+          if (req.body.password) {
+            foundObject.password = req.body.password;
+          }
+          if (req.body.studentIds) {
+            foundObject.studentIds = req.body.studentIds;
+          }
+          if (req.body.teacherId) {
+            foundObject.teacherId = req.body.teacherId;
+          }
+          if (req.body.username) {
+            foundObject.username = req.body.username;
+          }
+          foundObject.save(function(err, updatedOject) {
+            if (err) {
+              console.log(err);
+              res.status(500).send();
+            } else {
+              res.send(updatedOject);
+            }
+          });
+        }
+      }
+    });
+  });
+
+  //Create student api route
+  app.post("/api/student/", function(req, res) {
+    let newStudent = req.body;
+    newStudent.teacherIds = [newStudent.teacherIds];
+    // newStudent.classroomId = newStudent.classroomId;
+
+    db.Student.create(newStudent)
+      .then(function(dbStudent) {
+        return res.json(dbStudent);
+      })
+      .catch(err => {
+        console.log("ERROR ON STUDENT FIND", err);
+        res.json(err.message);
+      });
+  });
 
   // >>>>>>>>>>>>classRoom>>>>>>>>>>>>>>>>>>
   //Create classRoom api route
-  // app.post("/api/classroom/", function(req, res) {
-  //   console.log(req.body);
-  //   db.Classroom.create({ teacherId: req.body.teacherId }).then(function(
-  //     error,
-  //     dbClassroom
-  //   ) {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       res.send(dbClassroom);
-  //     }
-  //   });
-  // });
+  app.post("/api/classroom/", function(req, res) {
+    console.log(req.body);
+    db.Classroom.create({ teacherId: req.body.teacherId }).then(function(
+      error,
+      dbClassroom
+    ) {
+      if (error) {
+        console.log(error);
+      } else {
+        res.send(dbClassroom);
+      }
+    });
+  });
 
-  // // Displays all students
-  // app.get("/api/classrooms/", function(req, res) {
-  //   db.Classroom.find({}, function(error, classroom) {
-  //     if (error) {
-  //       console.log(error);
-  //     } else return res.json(classroom);
-  //   });
-  // });
+  // Displays all students
+  app.get("/api/classrooms/", function(req, res) {
+    db.Classroom.find({}, function(error, classroom) {
+      if (error) {
+        console.log(error);
+      } else return res.json(classroom);
+    });
+  });
 
-  // app.get("/info/:id", (req, res) => {
-  //   // The LONG Redundent Way to to this
-  //   const info = {};
-  //   // Get the student info
-  //   console.log("HIT INFO REQUEST");
-  //   db.Student.findOne({ _id: req.params.id })
-  //     .then(studentData => {
-  //       console.log("INSIDE STUDENT FIND");
-  //       console.log(studentData);
-  //       info.name = studentData.name;
-  //       info.grade = studentData.grade;
-  //       info.score = studentData.score;
-  //       info.comments = studentData.comments;
-  //       // Using classroom id from student info
-  //       // Get classroom data
-  //       db.Classroom.find({ _id: studentData.classroomId }).then(
-  //         classroomArray => {
-  //           console.log("CLASSROOM INFO", classroomData);
-  //           const teacherId = classroomData.teacherId;
-  //           // Using teacher ID from classroom data
-  //           // Get teacher info
-  //           db.Teacher.findOne({ teacherId: teacherId }).then(teacherArray => {
-  //             console.log("TEACHER INFO", teacherData);
-  //             info.teacherName = teacherData.name;
-  //             info.aboutTeacher = teacherData.aboutMe;
+  app.get("/info/:id", (req, res) => {
+    // The LONG Redundent Way to to this
+    const info = {};
+    // Get the student info
+    console.log("HIT INFO REQUEST");
+    db.Student.findOne({ _id: req.params.id })
+      .then(studentData => {
+        console.log("INSIDE STUDENT FIND");
+        console.log(studentData);
+        info.name = studentData.name;
+        info.grade = studentData.grade;
+        info.score = studentData.score;
+        info.comments = studentData.comments;
+        // Using classroom id from student info
+        // Get classroom data
+        db.Classroom.find({ _id: studentData.classroomId }).then(
+          classroomArray => {
+            console.log("CLASSROOM INFO", classroomData);
+            const teacherId = classroomData.teacherId;
+            // Using teacher ID from classroom data
+            // Get teacher info
+            db.Teacher.findOne({ teacherId: teacherId }).then(teacherArray => {
+              console.log("TEACHER INFO", teacherData);
+              info.teacherName = teacherData.name;
+              info.aboutTeacher = teacherData.aboutMe;
 
-  //             // info.teacherImg = teacherData.img;
-  //             res.json(info);
-  //             //    {
-  //             //       name: "Justin Kunz",
-  //             //       grade: "First Grade",
-  //             //       scores: [5, 4, 2, 4],
-  //             //       comments: "Good work",
-  //             //       teacherName: "Mr.Lynch",
-  //             //       aboutTeacher:  "osidghsdo08 y8sdvho8shdsodgivh 098h",,
-  //             //       img: "q13513513rfaesf"
-  //             //     };
-  //           });
-  //         }
-  //       );
-  //     })
-  //     .catch(err => {
-  //       console.log("ERROR ON STUDENT FIND", err);
-  //       res.json(err.message);
-  //     });
-  // });
+              // info.teacherImg = teacherData.img;
+              res.json(info);
+              //    {
+              //       name: "Justin Kunz",
+              //       grade: "First Grade",
+              //       scores: [5, 4, 2, 4],
+              //       comments: "Good work",
+              //       teacherName: "Mr.Lynch",
+              //       aboutTeacher:  "osidghsdo08 y8sdvho8shdsodgivh 098h",,
+              //       img: "q13513513rfaesf"
+              //     };
+            });
+          }
+        );
+      })
+      .catch(err => {
+        console.log("ERROR ON STUDENT FIND", err);
+        res.json(err.message);
+      });
+  });
 };
-
-//Create all teacher first
