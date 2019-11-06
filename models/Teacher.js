@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TeacherSchema = new Schema({
-  // teacherId: {
-  //   type: Number,
-  //   required: true
-  // },
+  teacherId: {
+    type: Number,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -27,12 +27,9 @@ const TeacherSchema = new Schema({
     type: String,
     required: true
   },
-  studentIds: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Student"
-    }
-  ],
+  studentIds: {
+    type: Array
+  },
   password: {
     type: String,
     required: true

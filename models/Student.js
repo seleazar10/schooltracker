@@ -89,12 +89,9 @@ const StudentSchema = new Schema({
   comments: {
     type: String
   },
-  teacherIds: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Teacher"
-    }
-  ],
+  teacherIds: {
+    type: Array
+  },
   username: {
     type: String,
     required: true
