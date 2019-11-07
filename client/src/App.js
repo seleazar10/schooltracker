@@ -1,22 +1,23 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import './App.css';
-import counterpart from 'counterpart';
-import Translate from 'react-translate-component';
-import en from './lang/en';
-import de from './lang/de';
-// import logo from './logo.svg';
+//import './App.css';// new
+//import counterpart from 'counterpart';// new
+//import Translate from 'react-translate-component';
+//import en from './lang/en';// new
+//import de from './lang/de';// new
+//import logo from './logo.svg';
 import Navbar from "./components/Navbar";
 import Auth from './pages/Auth';
 import Parent from "./pages/Parent";
 import Teacher from "./pages/Teacher";
+import Chat from "./pages/Message";
 import Wrapper from "./components/Wrapper";
-// import './App.css';
-counterpart.registerTranslations('en', en);
-counterpart.registerTranslations('es', es);
-counterpart.setLocale('en');
-
+import './App.css';
+//counterpart.registerTranslations('en', en);// new
+//counterpart.registerTranslations('es', es);// new
+/*counterpart.setLocale('en');
+// new stuff...
 const Link = (props) => {
   return (
     <Translate
@@ -42,11 +43,14 @@ class App extends Component {
     // tranlation stuff ex. p1, h1, ect
   }
 }
+ new stuff  ends */
+
+
+
 
 
 function App() {
   return (
-
     <Router>
       <div>
         <Navbar />
@@ -55,6 +59,7 @@ function App() {
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/parent" component={Parent} />
           <Route exact path="/teacher" component={Teacher} />
+          <Route exact path="/chat" component={Chat} />
         </Wrapper>
       </div>
     </Router>

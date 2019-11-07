@@ -38,6 +38,16 @@ function Navbar() {
               Teacher
             </Link>
           </li>
+
+          <li className="nav-item">
+            <Link
+              to="/chat"
+              className={window.location.pathname === "/chat" ? "nav-link active" : "nav-link"}
+            >
+              Message
+            </Link>
+          </li>
+
         </ul>
       </div>
     </nav>

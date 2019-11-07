@@ -20,8 +20,9 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^3.3.3",
     "if-env": "^1.0.4",
-    "mongoose": "^5.7.7"
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.7",
+    "react-translate-component": "^0.15.1"
   }
 }
