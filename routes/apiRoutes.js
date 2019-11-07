@@ -1,5 +1,7 @@
 const express = require("express");
 const db = require("../models");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 module.exports = app => {
   app.get("/", function(req, res) {
@@ -53,17 +55,43 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // //Create teacher // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+  // app.post("/api/teacher/", function(req, res) {
+  //   let {password} = req.body
+  //     bcrypt.hash(password, 10).then(function (hash) {
+  //   const{}
+  //   db.Teacher.create(newTeacher)
+  //     .then(function(dbTeacher) {
+  //       return res.json(dbTeacher);
+  //     })
+  //     .catch(err => {
+  //       console.log("ERROR ON STUDENT FIND", err);
+  //       res.json(err.message);
+  //     });
+  // });
+
   app.post("/api/teacher/", function(req, res) {
-    let newTeacher = req.body;
-    db.Teacher.create(newTeacher)
-      .then(function(dbTeacher) {
-        return res.json(dbTeacher);
+    let { password } = req.body;
+    bcrypt
+      .hash(password, saltRounds)
+      .then(function(hashedPassword) {
+        db.Teacher.create({
+          ...req.body,
+          password: hashedPassword
+        })
+          .then(function(dbTeacher) {
+            return res.json(dbTeacher);
+          })
+          .catch(err => {
+            console.log("ERROR ON STUDENT FIND", err);
+            res.json(err.message);
+          });
       })
       .catch(err => {
-        console.log("ERROR ON STUDENT FIND", err);
+        console.log("Bcrypt error", err);
         res.json(err.message);
       });
-  }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  });
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.put("/api/teacher/:id", function(req, res) {
     let id = req.params.id;
