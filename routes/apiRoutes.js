@@ -55,20 +55,6 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // //Create teacher // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-  // app.post("/api/teacher/", function(req, res) {
-  //   let {password} = req.body
-  //     bcrypt.hash(password, 10).then(function (hash) {
-  //   const{}
-  //   db.Teacher.create(newTeacher)
-  //     .then(function(dbTeacher) {
-  //       return res.json(dbTeacher);
-  //     })
-  //     .catch(err => {
-  //       console.log("ERROR ON STUDENT FIND", err);
-  //       res.json(err.message);
-  //     });
-  // });
-
   app.post("/api/teacher/", function(req, res) {
     let { password } = req.body;
     bcrypt
@@ -91,6 +77,32 @@ module.exports = app => {
         res.json(err.message);
       });
   });
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>Teacher Login>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //with bcrypt
+  app.post("/api/login", function(req, res) {
+    db.Teacher.findOne({
+      where: {
+        password: req.body.password
+      }
+    }).then(function(dbTeacher) {
+      if (dbTeacher === null) {
+        return res.json({ status: "error", message: "User does not exist 🤯" });
+      }
+      bcrypt
+        .compare(req.body.password, dbTeacher.password)
+        .then(function(success) {
+          if (success === true) {
+            res.json({ status: "error", check: "Check  credentials 🧐" });
+          }
+          //res True
+        })
+        .catch(function(err) {
+          res.json({ status: "Error 😢", desc: err });
+        });
+    });
+  });
+
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.put("/api/teacher/:id", function(req, res) {
