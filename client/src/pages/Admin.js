@@ -59,7 +59,11 @@ function Admin() {
                    <TextArea>
 
                    </TextArea>
+                   <FormBtn>
+                    Submit
+                </FormBtn>
                 </CardAnnModify>
+                
             </Container>
         </div>
 
