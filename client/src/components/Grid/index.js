@@ -18,7 +18,7 @@ export function Row({ fluid, children }) {
 export function Col({ size, children }) {
   return (
     <div
-      className="teacher col-sm-12 col-md-6 col-lg-6 bg-secondary"
+      className="teacher col-sm-12 col-md-6 col-lg-6"
     >
       {children}
     </div>
@@ -29,9 +29,11 @@ export function Col({ size, children }) {
 export function Col2({ size, children }) {
   return (
     <div
-      className="student col-sm-12 col-md-6 col-lg-6 bg-primary"
+      className="student col-sm-12 col-md-6 col-lg-6"
     >
       {children}
     </div>
   );
 }
+
+
