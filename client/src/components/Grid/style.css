@@ -1,8 +1,10 @@
-/* .teacher {
-    height: 200px;
+.teacher {
+    background-color: turquoise;
+    /* height: 200px; */
 
 }
 
 .student {
-    height: 200px;
-} */
+    background-color: wheat;
+    /* height: 200px; */
+}
