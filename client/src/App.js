@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import logo from './logo.svg';
 import Navbar from "./components/Navbar";
-import Auth from './pages/Auth';
+import Auth from "./pages/Auth";
 import Parent from "./pages/Parent";
 import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
@@ -11,17 +11,16 @@ import Wrapper from "./components/Wrapper";
 
 function App() {
   return (
-
     <Router>
-    <div>
-      <Navbar />
-      <Wrapper>
-      <Route exact path="/" component={Auth} />
+      <div>
+        <Navbar />
+        <Wrapper>
+          <Route exact path="/" component={Auth} />
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/parent" component={Parent} />
           <Route exact path="/teacher" component={Teacher} />
-      </Wrapper>
-    </div>
+        </Wrapper>
+      </div>
     </Router>
   );
 }
