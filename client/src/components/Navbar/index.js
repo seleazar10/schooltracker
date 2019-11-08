@@ -41,8 +41,8 @@ function Navbar() {
 
           <li className="nav-item">
             <Link
-              to="/chat"
-              className={window.location.pathname === "/chat" ? "nav-link active" : "nav-link"}
+              to="/message"
+              className={window.location.pathname === "/message" ? "nav-link active" : "nav-link"}
             >
               Message
             </Link>
