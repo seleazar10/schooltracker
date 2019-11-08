@@ -81,23 +81,30 @@ module.exports = app => {
   // >>>>>>>>>>>>>>>>>>>>>>>>>Teacher Login>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   //with bcrypt
   app.post("/api/login", function(req, res) {
+    console.log("login route hit");
     db.Teacher.findOne({
-      where: {
-        password: req.body.password
-      }
+      email: req.body.email
     }).then(function(dbTeacher) {
+      console.log(dbTeacher);
       if (dbTeacher === null) {
         return res.json({ status: "error", message: "User does not exist 🤯" });
       }
+      console.log("**********************************");
+      console.log(dbTeacher);
       bcrypt
         .compare(req.body.password, dbTeacher.password)
         .then(function(success) {
-          if (success === true) {
-            res.json({ status: "error", check: "Check  credentials 🧐" });
+          if (success) {
+            res.json(dbTeacher);
+          } else {
+            {
+              res.json({ status: "error", check: "Check  credentials 🧐" });
+            }
+            //res True
           }
-          //res True
         })
         .catch(function(err) {
+          console.log("🤬🤯");
           res.json({ status: "Error 😢", desc: err });
         });
     });
