@@ -2,7 +2,7 @@
 import React from "react";
 
 import Jumbotron from "../components/Jumbotron";
-import AdminCard from "../components/AdminCard";
+import { CardAnnouncements, CardAnnModify } from "../components/AdminCard";
 import { Col, Col2, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
@@ -16,50 +16,53 @@ function Admin() {
             <Container >
                 <Row>
                     <Col >
-                    <Container>
-                        <h1 className="text-center">Teacher Department</h1>
-                        <Row>
-                        <FormBtn>
-                            Create Teacher
+                        <Container>
+                            <h1 className="text-center">Teacher Department</h1>
+                            <Row>
+                                <FormBtn>
+                                    Create Teacher
                         </FormBtn>
-                        <FormBtn>
-                            Modify Teacher
+                                <FormBtn>
+                                    Modify Teacher
                         </FormBtn>
-                        <FormBtn>
-                            Delete Teacher
+                                <FormBtn>
+                                    Delete Teacher
                         </FormBtn>
-                        </Row>
+                            </Row>
                         </Container>
                     </Col>
                     <Col2>
                         <Container>
-                        <h1 className="text-center">Student Department</h1>
-                        <Row>
-                        <FormBtn>
-                            Create Student
+                            <h1 className="text-center">Student Department</h1>
+                            <Row>
+                                <FormBtn>
+                                    Create Student
                         </FormBtn>
-                        <FormBtn>
-                            Modify Student
+                                <FormBtn>
+                                    Modify Student
                         </FormBtn>
-                        <FormBtn>
-                            Delete Student
+                                <FormBtn>
+                                    Delete Student
                         </FormBtn>
-                        </Row>
+                            </Row>
                         </Container>
                     </Col2>
                 </Row>
             </Container>
             <Container >
-            <AdminCard>
-            <TextArea>
-                
-            </TextArea>
-            </AdminCard>
-            
+                <CardAnnouncements>
+                   
+                </CardAnnouncements>
+            </Container>
+            <Container >
+                <CardAnnModify>
+                   <TextArea>
 
+                   </TextArea>
+                </CardAnnModify>
             </Container>
         </div>
-        
+
 
     );
 }
