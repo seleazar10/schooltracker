@@ -10,7 +10,7 @@ const app = express();
 const db = require("./models");
 
 //Established a port to listen on
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8000;
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));

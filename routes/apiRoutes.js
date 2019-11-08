@@ -1,5 +1,7 @@
 const express = require("express");
 const db = require("../models");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 module.exports = app => {
   app.get("/", function(req, res) {
@@ -54,16 +56,61 @@ module.exports = app => {
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // //Create teacher // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.post("/api/teacher/", function(req, res) {
-    let newTeacher = req.body;
-    db.Teacher.create(newTeacher)
-      .then(function(dbTeacher) {
-        return res.json(dbTeacher);
+    let { password } = req.body;
+    bcrypt
+      .hash(password, saltRounds)
+      .then(function(hashedPassword) {
+        db.Teacher.create({
+          ...req.body,
+          password: hashedPassword
+        })
+          .then(function(dbTeacher) {
+            return res.json(dbTeacher);
+          })
+          .catch(err => {
+            console.log("ERROR ON STUDENT FIND", err);
+            res.json(err.message);
+          });
       })
       .catch(err => {
-        console.log("ERROR ON STUDENT FIND", err);
+        console.log("Bcrypt error", err);
         res.json(err.message);
       });
-  }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  });
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>Teacher Login>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //with bcrypt
+  app.post("/api/login", function(req, res) {
+    console.log("login route hit");
+    db.Teacher.findOne({
+      email: req.body.email
+    }).then(function(dbTeacher) {
+      console.log(dbTeacher);
+      if (dbTeacher === null) {
+        return res.json({ status: "error", message: "User does not exist 🤯" });
+      }
+      console.log("**********************************");
+      console.log(dbTeacher);
+      bcrypt
+        .compare(req.body.password, dbTeacher.password)
+        .then(function(success) {
+          if (success) {
+            res.json(dbTeacher);
+          } else {
+            {
+              res.json({ status: "error", check: "Check  credentials 🧐" });
+            }
+            //res True
+          }
+        })
+        .catch(function(err) {
+          console.log("🤬🤯");
+          res.json({ status: "Error 😢", desc: err });
+        });
+    });
+  });
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.put("/api/teacher/:id", function(req, res) {
     let id = req.params.id;
