@@ -100,7 +100,11 @@ class App extends React.Component {
         <div className="container mb-5">
           <h1 className="headText text-center">First Hour - Roster</h1>
 
+          <div className="mb-5">
           {userList}
+          </div>
+
+         
 
 
            <Tracker />
