@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Auth from './pages/Auth';
 import Parent from "./pages/Parent";
-import Teacher from "./pages/Teacher";
+import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
 // import './App.css';
 
