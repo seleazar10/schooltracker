@@ -32,6 +32,7 @@ module.exports = app => {
     // TODO
     // ====
     // save the new studentId that gets posted to the Student collection
+
     db.Student.create(req.body)
       .then(function(data) {
         return db.Teacher.findOneAndUpdate(
@@ -82,32 +83,48 @@ module.exports = app => {
   //with bcrypt
   app.post("/api/login", function(req, res) {
     console.log("login route hit");
-    db.Teacher.findOne({
-      email: req.body.email
-    }).then(function(dbTeacher) {
-      console.log(dbTeacher);
-      if (dbTeacher === null) {
-        return res.json({ status: "error", message: "User does not exist 🤯" });
-      }
-      console.log("**********************************");
-      console.log(dbTeacher);
-      bcrypt
-        .compare(req.body.password, dbTeacher.password)
-        .then(function(success) {
-          if (success) {
-            res.json(dbTeacher);
-          } else {
-            {
-              res.json({ status: "error", check: "Check  credentials 🧐" });
+    let dbName = req.body.userType == "teacher" ? "Teacher" : "Student";
+
+    // if (req.body.userType == "teacher") {
+    //   dbName = "Teacher";
+    // } else {
+    //   dbName = "Student";
+    // }
+
+    db[dbName]
+      .findOne({
+        email: req.body.email
+      })
+      .then(function(user) {
+        console.log(user);
+        if (user === null) {
+          return res.json({
+            status: "error",
+            message: "User does not exist 🤯"
+          });
+        }
+        console.log("**********************************");
+        console.log(user);
+        bcrypt
+          .compare(req.body.password, user.password)
+          .then(function(success) {
+            if (success) {
+              res.json(user);
+            } else {
+              {
+                res
+                  .status(400)
+                  .send({ status: "error", check: "Check  credentials 🧐" });
+                // res.json({ status: "error", check: "Check  credentials 🧐" });
+              }
+              //res True
             }
-            //res True
-          }
-        })
-        .catch(function(err) {
-          console.log("🤬🤯");
-          res.json({ status: "Error 😢", desc: err });
-        });
-    });
+          })
+          .catch(function(err) {
+            console.log("🤬🤯");
+            res.json({ status: "Error 😢", desc: err });
+          });
+      });
   });
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -173,17 +190,29 @@ module.exports = app => {
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Create student api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.post("/api/student/", function(req, res) {
-    let newStudent = req.body;
-    console.log(`New Student added: ${newStudent}`);
-    db.Student.create(newStudent)
-      .then(function(dbStudent) {
-        return res.json(dbStudent);
+    let { password } = req.body;
+    bcrypt
+      .hash(password, saltRounds)
+      .then(function(hashedPassword) {
+        db.Student.create({
+          ...req.body,
+          password: hashedPassword
+        })
+          .then(function(dbStudent) {
+            return res.json(dbStudent);
+          })
+          .catch(err => {
+            console.log("ERROR ON STUDENT FIND", err);
+            res.json(err.message);
+          });
       })
       .catch(err => {
-        console.log("ERROR ON STUDENT FIND", err);
+        console.log("Bcrypt error", err);
         res.json(err.message);
       });
-  }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update a Student Object // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  });
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update a Student Object // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.put("/api/student/update/:id", function(req, res) {
     let id = req.params.id;
@@ -301,4 +330,23 @@ module.exports = app => {
       .then(dbStudent => res.json(dbStudent))
       .catch(err => res.status(422).json(err));
   });
+
+  app.post("/api/teacher/studentadd/:id", (req, res) => {
+    console.log("Request:", req.body);
+    console.log("Id:", req.params.id);
+
+    db.Teacher.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $push: { students: req.body.studentId } }
+    )
+      .then(function(dbTeacher) {
+        res.json(dbTeacher);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  });
 };
+// { _id: req.params.id },
+//           { $push: { studentIds: data.id } },
+//           { new: true }
