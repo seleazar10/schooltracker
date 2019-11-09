@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // import logo from './logo.svg';
 import Navbar from "./components/Navbar";
 import Auth from './pages/Auth';
-import Parent from "./pages/Parent";
+import Parent from "./pages/Parent/Parent";
 import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
 // import './App.css';

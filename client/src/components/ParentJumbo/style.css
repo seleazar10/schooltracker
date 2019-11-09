@@ -1,0 +1,7 @@
+.jumbo {
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.432), rgba(0, 0, 0, 0.432)), url("https://picsum.photos/640/360");
+    background-size: cover;
+    background-position: center;
+    color: white
+  
+  }

@@ -5,6 +5,9 @@ import usersdb from "../../components/Teacher/usersdb";
 import UserCard from "../../components/Teacher/UserCard";
 
 import Tracker from "../../components/Teacher/Tracker"
+import BehaviorTracker from "../../components/BehaviorTracker/BehaviorTracker";
+
+
 
 
 class Teacher extends React.Component {
@@ -13,12 +16,25 @@ class Teacher extends React.Component {
     super()
     this.state = {
       users: usersdb,
-      selectedIDs: []
+      selectedIDs: [],
+      pillOneValue: "",
+      pillTwoValue: "",
+      pillThreeValue: "",
+      pillFourValue: "",
+
 
     }
+    
 
     this.handleChange = this.handleChange.bind(this)
     this.scrollToTracker = this.scrollToTracker.bind(this)
+    this.newSelection = this.newSelection.bind(this)
+  }
+
+  newSelection(e){
+
+    console.log(e.target.value);
+    
   }
 
   handleChange(id) {
@@ -108,7 +124,10 @@ class Teacher extends React.Component {
          
 
 
-           <Tracker />
+           <Tracker newSelection={(e)=> this.newSelection(e)}/>
+
+
+           
 
            {this.state.users.map((user) => {
           if (user.selected) { 

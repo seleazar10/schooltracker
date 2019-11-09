@@ -1,7 +1,10 @@
 import React from 'react';
+import BehaviorTracker from "../BehaviorTracker/BehaviorTracker";
+import radiooptions from "../BehaviorTracker/radiooptions"
 
 
 function Tracker(props) {
+
     return (
         <div className="container mt-5">
             <div className="card  teaBeLogTab col-12 mt-5">
@@ -11,304 +14,43 @@ function Tracker(props) {
                 {/* <h5 className="card-header studentId"> <span></span></h5> */}
 
 
-
-
                 <div class="card-body">
 
 
                     <table class="table bg-white ">
                         <thead class="thead-dark bg-success text-center">
                             <tr>
-                                <th scope="col">Category</th>
-                                <th scope="col">Score</th>
+                                <th scope="col">Category and Score</th>
+                                {/* <th scope="col">Score</th> */}
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Respect</th>
-                                <td>
-                                    <form className="text-center">
 
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option1"
-                                                    checked={true}
-                                                    className="form-check-input pillOne"
-                                                // checked={this.state.selectedOption === "option3"}
-                                                // onChange={this.handleOptionChange}
-                                                />
-                                                1
-                                            </label>
-                                        </div>
+                            
+                                {radiooptions.map(option =>
+                                    <div>
 
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option2"
-                                                    className="form-check-input"
-                                                />
-                                                2
-  </label>
-                                        </div>
+                                        <tr>
 
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option3"
-                                                    className="form-check-input"
-                                                />
-                                                3
-  </label>
-                                        </div>
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option4"
-                                                    className="form-check-input"
-                                                />
-                                                4
-  </label>
-                                        </div>
-                                        <div className="form-check form-check-inline ">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option5"
-                                                    className="form-check-input"
-                                                />
-                                                5
-  </label>
-                                        </div>
+                                        <th scope="row" className="optionsNameClm">
+                                        {option.question}
+                                        </th>
 
 
-                                    </form>
-                                </td>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">Kindness</th>
-                                <td>
-                                    <form className="text-center">
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option1"
-                                                    checked={true}
-                                                    className="form-check-input"
-                                                // checked={this.state.selectedOption === "option3"}
-                                                // onChange={this.handleOptionChange}
-                                                />
-                                                1
-  </label>
-                                        </div>
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option2"
-                                                    className="form-check-input"
-                                                />
-                                                2
-  </label>
-                                        </div>
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option3"
-                                                    className="form-check-input"
-                                                />
-                                                3
-  </label>
-                                        </div>
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option4"
-                                                    className="form-check-input"
-                                                />
-                                                4
-  </label>
-                                        </div>
-                                        <div className="form-check form-check-inline ">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option5"
-                                                    className="form-check-input"
-                                                />
-                                                5
-                                        </label>
-                                        </div>
+                                        <td scope="row" className="optionsClm ">
+                                        <form className="text-center form-check-inline">
+                                        <BehaviorTracker data={option} newSelection={(e) => props.newSelection(e)} />
+                                        </form>
+                                        </td>
 
 
-                                    </form>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">On-Task</th>
-                                <td>
-                                    <form className="text-center">
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option1"
-                                                    checked={true}
-                                                    className="form-check-input"
-                                                // checked={this.state.selectedOption === "option3"}
-                                                // onChange={this.handleOptionChange}
-                                                />
-                                                1
-                                        </label>
-                                        </div>
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option2"
-                                                    className="form-check-input"
-                                                />
-                                                2
-                                        </label>
-                                        </div>
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option3"
-                                                    className="form-check-input"
-                                                />
-                                                3
-                                        </label>
-                                        </div>
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option4"
-                                                    className="form-check-input"
-                                                />
-                                                4
-                                        </label>
-                                        </div>
-                                        <div className="form-check form-check-inline ">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option5"
-                                                    className="form-check-input"
-                                                />
-                                                5
-                                        </label>
-                                        </div>
-
-
-                                    </form>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">Listening Skills</th>
-                                <td>
-                                    <form className="text-center">
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="1"
-                                                    checked={true}
-                                                    className="form-check-input"
-                                                // checked={this.state.selectedOption === "option3"}
-                                                // onChange={this.handleOptionChange}
-                                                />
-                                                1
-                                            </label>
-                                        </div>
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="2"
-                                                    className="form-check-input"
-                                                />
-                                                2
-                                            </label>
-                                        </div>
-
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="3"
-                                                    className="form-check-input"
-                                                />
-                                                3
-                                            </label>
-                                        </div>
-                                        <div className="form-check form-check-inline pr-4">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="4"
-                                                    className="form-check-input"
-                                                />
-                                                4
-                                             </label>
-                                        </div>
-                                        <div className="form-check form-check-inline ">
-                                            <label>
-                                                <input
-                                                    type="radio"
-                                                    name="react-tips"
-                                                    value="option5"
-                                                    className="form-check-input"
-                                                />
-                                                5
-                                            </label>
-                                        </div>
-
-
-                                    </form>
-                                </td>
-
-                            </tr>
+                                        </tr>
+                                     </div>
+                                )}
+                        
+                            
 
 
                         </tbody>
@@ -344,6 +86,7 @@ function Tracker(props) {
                 </div>
             </div>
 
+{/* upload btn */}
 
             <form className="mt-3">
                 <div classnName="form-group ">
