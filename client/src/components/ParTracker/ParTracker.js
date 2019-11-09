@@ -39,10 +39,9 @@ function ParTracker() {
 
                         <div class="col-lg-6 col-sm-12 behaviorColor">
 
-
                             <div class="colorAverage">
-                                <p class="text-center colorNameDisplay"></p>
-                                <p class="text-center colorNameDisplay"></p>
+                                <p class="text-center colorNameDisplay"> ~~~~~~~~~Placeholder for dynamic color change upon receiving data (points and caluclate average) from mongo from teacher</p>
+                                
                             </div>
 
 
@@ -66,28 +65,28 @@ function ParTracker() {
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Respect</th>
-                                                <td class="pilOne"></td>
+                                                <td class="pilOne">~~~</td>
 
                                             </tr>
                                             <tr>
                                                 <th scope="row">Kindness</th>
-                                                <td class="pilTwo"></td>
+                                                <td class="pilTwo">~~~~</td>
 
                                             </tr>
                                           
                                             <tr>
                                                 <th scope="row">On-Task</th>
-                                                <td class="pilThree"></td>
+                                                <td class="pilThree">~~</td>
 
                                             </tr>
                                             <tr>
                                                 <th scope="row">Reading and Speaking</th>
-                                                <td class="pilFour"></td>
+                                                <td class="pilFour">~~</td>
 
                                             </tr>
                                             <tr class="bg-warning text-white">
                                                 <th scope="row">Missing Work:</th>
-                                                <td class="pilFive"></td>
+                                                <td class="pilFive">~~</td>
 
                                             </tr>
 
@@ -123,7 +122,7 @@ function ParTracker() {
                 <h5 class="card-header">Teacher's comment:</h5>
                 <div class="card-body">
                     <p class="comToPost"></p>
-                    <p>~~~~~~~~~Placeholder for dynamic color change upon receiving data from mongo from teacher</p>
+                    <p>~~~~~~~~~Placeholder to render message from mongo from teacher comment box</p>
                 </div>
             </div>
 

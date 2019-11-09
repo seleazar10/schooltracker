@@ -84,7 +84,16 @@ function ParGrade() {
 
                             <div className="card">
                                 <h5 className="card-header text-center">Grades</h5>
-                                <div className="card-body powerSchool bg-primary text-center">
+                                <div className="card-body powerSchool text-center">
+
+                                    <a href="https://help.powerschool.com/t5/Enrollment-Registration/Powerschool-Parent-Portal-Access/ta-p/13" target="_blank">
+                                        {/* <Image src="https://imgur.com/C1YnXpg" className="PS" /> */}
+
+                                        <img src="https://i.imgur.com/JEO5Lly.png" className="powerschoolImg" alt="PS Image"/>
+
+                                        
+                                
+                                    </a>
 
                                 </div>
                             </div>

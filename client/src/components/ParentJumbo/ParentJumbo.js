@@ -16,7 +16,7 @@ function ParentJumbo() {
       <h1 className="display-4 text  text-center">DarStar!</h1> 
       
 
-      <p className="lead mt-3 mb-4">The easiest way for you to track your student's behavior and staying in contact with
+      <p className="lead mt-3 mb-4 text-center" >The easiest way for you to track your student's behavior and staying in contact with
         their teachers!</p>
 
        
