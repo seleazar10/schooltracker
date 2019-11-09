@@ -1,7 +1,7 @@
-// display the parents page that should contain the parent info
+
 import React from "react";
 
-function Message() {
+function Contact() {
     return (
         <div>
             <p>This is a chat app page </p>
@@ -10,4 +10,4 @@ function Message() {
 
 }
 
-export default Message;
+export default Contact;
