@@ -40,25 +40,16 @@ function ParTracker() {
                         <div class="col-lg-6 col-sm-12 behaviorColor">
 
 
-                            <div class="colorWritten">
+                            <div class="colorAverage">
                                 <p class="text-center colorNameDisplay"></p>
                                 <p class="text-center colorNameDisplay"></p>
                             </div>
 
 
-
-
-
-
-
                         </div>
 
 
-
-
-
-
-
+                    {/* need to add dyncamically the table below by rendering data from mongo */}
 
                         <div class="col-lg-6 col-sm-12">
                             <div class="card">
@@ -132,6 +123,7 @@ function ParTracker() {
                 <h5 class="card-header">Teacher's comment:</h5>
                 <div class="card-body">
                     <p class="comToPost"></p>
+                    <p>~~~~~~~~~Placeholder for dynamic color change upon receiving data from mongo from teacher</p>
                 </div>
             </div>
 

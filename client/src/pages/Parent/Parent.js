@@ -6,6 +6,7 @@ import ParTracker from "../../components/ParTracker/ParTracker"
 import ParAncmt from "../../components/ParAncmt/ParAncmt"
 import ParWeather from "../../components/ParWeather/ParWeather"
 import Footer from "../../components/Footer/Footer"
+import ParGrade from "../../components/ParGrade/ParGrade"
 
 
 
@@ -23,9 +24,11 @@ class Parent extends React.Component{
 
                <ParTracker />
 
-               {/* <ParAncmt /> */}
+               <ParAncmt />
 
                <ParWeather />
+
+               <ParGrade />
 
                <Footer />
 

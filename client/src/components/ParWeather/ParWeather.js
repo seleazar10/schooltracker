@@ -20,7 +20,7 @@ function ParAncmt() {
 
                 <div id="openweathermap-widget-15"></div>
 
-                <p>~~~~~~~~~Placeholder to dynamic color change upon receiving numbers from mongo</p>
+                <p>~~~~~~~~~Placeholder for dynamic color change upon receiving numbers from mongo from admin</p>
 
 
               </div>
