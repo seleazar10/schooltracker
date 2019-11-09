@@ -33,6 +33,8 @@ class Teacher extends React.Component {
 
   newSelection(e){
 
+    
+    console.log(e.target.name);
     console.log(e.target.value);
     
   }
@@ -113,7 +115,7 @@ class Teacher extends React.Component {
 
 
     return (
-      <div>
+      <div className="teachBg">
         <div className="container mb-5">
           <h1 className="headText text-center">First Hour - Roster</h1>
 

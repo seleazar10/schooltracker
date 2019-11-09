@@ -1,6 +1,7 @@
 import React from 'react';
 import BehaviorTracker from "../BehaviorTracker/BehaviorTracker";
 import radiooptions from "../BehaviorTracker/radiooptions"
+import TeachComment from "../TeachComment/TeachComment"
 
 
 function Tracker(props) {
@@ -27,30 +28,30 @@ function Tracker(props) {
                         </thead>
                         <tbody>
 
-                            
-                                {radiooptions.map(option =>
-                                    <div>
 
-                                        <tr>
+                            {radiooptions.map(option =>
+                                <div>
+
+                                    <tr>
 
                                         <th scope="row" className="optionsNameClm">
-                                        {option.question}
+                                            {option.question}
                                         </th>
 
 
 
                                         <td scope="row" className="optionsClm ">
-                                        <form className="text-center form-check-inline">
-                                        <BehaviorTracker data={option} newSelection={(e) => props.newSelection(e)} />
-                                        </form>
+                                            <form className="text-center form-check-inline">
+                                                <BehaviorTracker data={option} newSelection={(e) => props.newSelection(e)} />
+                                            </form>
                                         </td>
 
 
-                                        </tr>
-                                     </div>
-                                )}
-                        
-                            
+                                    </tr>
+                                </div>
+                            )}
+
+
 
 
                         </tbody>
@@ -67,34 +68,33 @@ function Tracker(props) {
             {/* textbox */}
 
 
+            <TeachComment newSelection={(e) => props.newSelection(e)} />
 
+
+
+            {/* upload btn */}
 
             <div className="card mt-5">
                 <div className="card-header bg-dark text-light">
-                    <h5>Teacher's Comment:</h5>
+                    <h5>Share Documents</h5>
                 </div>
-                <div className="card-body">
-
-                    <div className="form-group">
-
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+                <div class="card-body">
 
 
+                    <form className="mt-3">
+                        <div classnName="form-group ">
+                            <h5>Add missing work or share documents with parent here:</h5>
+                            {/* <label for="exampleFormControlFile1">Example file input</label> */}
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" />
+                        </div>
+                    </form>
 
 
                 </div>
             </div>
 
-{/* upload btn */}
 
-            <form className="mt-3">
-                <div classnName="form-group ">
-                    <h5>Add missing work or other documents for parent here:</h5>
-                    {/* <label for="exampleFormControlFile1">Example file input</label> */}
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" />
-                </div>
-            </form>
+
 
 
 
