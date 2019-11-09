@@ -19,7 +19,7 @@ function TeachComment(props){
 
 
                     <div>
-                        <MissingWork newSelection={(e) => props.newSelection(e)}/>
+                        <MissingWork values={props.values} newSelection={(e) => props.newSelection(e)}/>
 
                     </div>
                     

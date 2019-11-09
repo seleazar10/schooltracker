@@ -1,5 +1,5 @@
 
-const json = [
+const radiojson = [
   {
 
     question: 'Respect',
@@ -54,4 +54,4 @@ const json = [
 
 ]
 
-export default json;
+export default radiojson;

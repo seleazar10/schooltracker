@@ -1,7 +1,8 @@
 import React from 'react';
 import BehaviorTracker from "../BehaviorTracker/BehaviorTracker";
 import radiooptions from "../BehaviorTracker/radiooptions"
-import TeachComment from "../TeachComment/TeachComment"
+import TeachComment from "../TeachComment/TeachComment";
+import TeaFileUpload from "../TeaFileUpload/TeaFileUpload"
 
 
 function Tracker(props) {
@@ -13,6 +14,8 @@ function Tracker(props) {
                 <h5 className="card-header bg-dark text-white studentName">Behavior Tacker</h5>
                 <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p>
                 {/* <h5 className="card-header studentId"> <span></span></h5> */}
+
+                
 
 
                 <div class="card-body">
@@ -42,7 +45,7 @@ function Tracker(props) {
 
                                         <td scope="row" className="optionsClm ">
                                             <form className="text-center form-check-inline">
-                                                <BehaviorTracker data={option} newSelection={(e) => props.newSelection(e)} />
+                                                <BehaviorTracker values={props.values} data={option} newSelection={(e) => props.newSelection(e)} />
                                             </form>
                                         </td>
 
@@ -68,7 +71,7 @@ function Tracker(props) {
             {/* textbox */}
 
 
-            <TeachComment newSelection={(e) => props.newSelection(e)} />
+            <TeachComment values={props.values} newSelection={(e) => props.newSelection(e)} />
 
 
 
@@ -81,13 +84,11 @@ function Tracker(props) {
                 <div class="card-body">
 
 
-                    <form className="mt-3">
-                        <div classnName="form-group ">
-                            <h5>Add missing work or share documents with parent here:</h5>
-                            {/* <label for="exampleFormControlFile1">Example file input</label> */}
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" />
-                        </div>
-                    </form>
+
+                    {/* file Upload */}
+
+
+                    <TeaFileUpload values={props.values}  newFileUploaded={(event) => props.handleSubmit(event)} />
 
 
                 </div>
