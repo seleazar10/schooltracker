@@ -8,6 +8,7 @@ import ParWeather from "../../components/ParWeather/ParWeather";
 import Footer from "../../components/Footer/Footer";
 import ParGrade from "../../components/ParGrade/ParGrade";
 import ParCalendar from "../../components/ParCalendar/ParCalendar";
+import "./Parent.css"
 
 
 
@@ -17,7 +18,7 @@ class Parent extends React.Component{
         return(
 
             
-           <div>
+           <div className="parentBg">
 
                <ParentJumbo />
 

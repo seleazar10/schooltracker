@@ -117,11 +117,22 @@ class Teacher extends React.Component {
     return (
       <div className="teachBg">
         <div className="container mb-5">
-          <h1 className="headText text-center">First Hour - Roster</h1>
 
-          <div className="mb-5">
-          {userList}
-          </div>
+        <div className="">
+                <div className="card mt-5 trackerCardBodyBg">
+                <div className="card-header bg-dark text-light text-center">
+                    <h5>First Hour - Roster</h5>
+                </div>
+                <div className="card-body">
+
+                {userList}              
+
+
+                </div>
+            </div>
+        </div>
+
+
 
          
 
