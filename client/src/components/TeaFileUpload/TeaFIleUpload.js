@@ -1,43 +1,44 @@
-import React from 'react';
+import React from "react";
 
-class TeaFileUpload extends React.Component {
-    // constructor(props) {
-    //   // highlight-range{3}
-    //   super(props);
-    //   this.handleSubmit = this.handleSubmit.bind(this);
-    //   this.fileInput = React.createRef();
-    // }
-    // handleSubmit(event) {
-    //   // highlight-range{4}
-    //   event.preventDefault();
-    //   alert(
-    //     `Selected file - ${
-    //       this.fileInput.current.files[0].name
-    //     }`
-    //   );
-    // }
+class Upload extends React.Component {
+  readFileDataAsBase64 = e => {
+    const file = e.target.files[0];
 
-    
-  
-    render(props) {
-      // highlight-range{5}
-      return (
-        <form onSubmit={this.props.handleSubmit}>
-          <label>
-           
-            <input type="file" ref={this.props.fileInput} />
-          </label>
-          <br />
-          <button type="submit" className="btn bg-primary" >Upload</button>
-        </form>
-      );
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = event => {
+        resolve(event.target.result);
+      };
+
+      reader.onerror = err => {
+        reject(err);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
+  handleFileSubmit = async e => {
+    try {
+      const fileContents = await this.readFileDataAsBase64(e);
+      console.log(fileContents);
+    } catch (err) {
+      console.log(err);
     }
+  };
+
+  render() {
+    return (
+      <div>
+        <form>
+          <input type="file" onChange={this.handleFileSubmit}></input>
+
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+      </div>
+    );
   }
+}
 
-
-
-export default TeaFileUpload;
-
-
-
-  
+export default Upload;

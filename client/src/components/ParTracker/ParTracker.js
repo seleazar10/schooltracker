@@ -8,6 +8,10 @@ function ParTracker() {
 
             <div class="card behavTab">
 
+                <div className="card-header bg-dark text-light text-center">
+                    <h5>Behavior Tracker</h5>
+                </div>
+
 
 
 
@@ -41,17 +45,18 @@ function ParTracker() {
 
                             <div class="colorAverage">
                                 <p class="text-center colorNameDisplay"> ~~~~~~~~~Placeholder for dynamic color change upon receiving data (points and caluclate average) from mongo from teacher</p>
-                                
+
                             </div>
 
 
                         </div>
 
 
-                    {/* need to add dyncamically the table below by rendering data from mongo */}
+                        {/* need to add dyncamically the table below by rendering data from mongo */}
 
                         <div class="col-lg-6 col-sm-12">
                             <div class="card">
+
                                 <div class="card-body">
 
                                     <table class="table  bg-white">
@@ -73,7 +78,7 @@ function ParTracker() {
                                                 <td class="pilTwo">~~~~</td>
 
                                             </tr>
-                                          
+
                                             <tr>
                                                 <th scope="row">On-Task</th>
                                                 <td class="pilThree">~~</td>
@@ -119,7 +124,7 @@ function ParTracker() {
             <div class="card behavTab mt-3 mb-4">
 
 
-                <h5 class="card-header">Teacher's comment:</h5>
+                <h5 class="card-header bg-dark text-light">Teacher's comment:</h5>
                 <div class="card-body">
                     <p class="comToPost"></p>
                     <p>~~~~~~~~~Placeholder to render message from mongo from teacher comment box</p>

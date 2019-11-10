@@ -8,7 +8,7 @@ function ParCalendar() {
 
         <div className="container">
             <div className="card parCalend teachPic mt-2 mb-5">
-                <h5 className="card-header">Calendar</h5>
+                <h5 className="card-header bg-dark text-light text-center">Calendar</h5>
                 <div className="card-body ">
 
                     <img src="https://i.imgur.com/PkFN3ie.jpg" className="parCalend" alt="schoolCalendSamp"/>

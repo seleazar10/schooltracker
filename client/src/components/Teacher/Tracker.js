@@ -9,9 +9,11 @@ function Tracker(props) {
 
     return (
         <div className="container mt-5">
-            <div className="card  teaBeLogTab col-12 mt-5">
+            <div className="card teaBeLogTab col-12 mt-5">
 
-                <h5 className="card-header bg-dark text-white studentName">Behavior Tacker</h5>
+            <div className="card-header bg-white text-dark text-center">
+                <h4>Behavior Tracker</h4>
+              </div>
                 <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p>
                 {/* <h5 className="card-header studentId"> <span></span></h5> */}
 
@@ -21,7 +23,7 @@ function Tracker(props) {
                 <div class="card-body">
 
 
-                    <table class="table bg-white ">
+                    <table class="table bg-white scoreTable">
                         <thead class="thead-dark bg-success text-center">
                             <tr>
                                 <th scope="col">Category and Score</th>
@@ -87,8 +89,7 @@ function Tracker(props) {
 
                     {/* file Upload */}
 
-
-                    <TeaFileUpload values={props.values}  newFileUploaded={(event) => props.handleSubmit(event)} />
+                    <TeaFileUpload />
 
 
                 </div>

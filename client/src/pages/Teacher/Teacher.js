@@ -34,8 +34,8 @@ class Teacher extends React.Component {
     this.newSelection = this.newSelection.bind(this)
 
     // file upload
-    this.handleSubmit = this.handleSubmit.bind(this);
-      this.fileInput = React.createRef();
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    //   this.fileInput = React.createRef();
   }
 
   newSelection(e) {
@@ -116,15 +116,15 @@ class Teacher extends React.Component {
 
   //file upload
 
-  handleSubmit(event) {
-    // highlight-range{4}
-    event.preventDefault();
-    alert(
-      `Selected file - ${
-        this.fileInput.current.files[0].name
-      }`
-    );
-  }
+  // handleSubmit(event) {
+  //   // highlight-range{4}
+  //   event.preventDefault();
+  //   alert(
+  //     `Selected file - ${
+  //       this.fileInput.current.files[0].name
+  //     }`
+  //   );
+  // }
 
 
 

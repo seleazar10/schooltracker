@@ -7,7 +7,7 @@ function ParAncmt(){{
 
             
         <div className="card parAncmnt mt-2 mb-5">
-          <h5 className="card-header">Announcements</h5>
+          <h5 className="card-header bg-dark text-light">Announcements</h5>
           <div className="card-body ">
             <p>Christmas program information will be sent out on Monday!</p>
             <p>~~~~~~~~~Placeholder to render message from mongo from admin</p>

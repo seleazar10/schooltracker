@@ -10,7 +10,7 @@ function ParAncmt() {
       <div className="container">
 
         <div className="card parWeather mt-2 mb-5">
-          <h5 className="card-header">Weather</h5>
+          <h5 className="card-header bg-dark text-light">Weather</h5>
           <div className="card-body">
 
             <div className="row">
