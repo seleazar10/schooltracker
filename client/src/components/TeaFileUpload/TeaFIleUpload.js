@@ -34,7 +34,7 @@ class Upload extends React.Component {
         <form>
           <input type="file" onChange={this.handleFileSubmit}></input>
 
-          <button type="submit" class="btn btn-primary">Upload</button>
+          {/* <button type="submit" class="btn btn-primary">Upload</button> */}
         </form>
       </div>
     );
