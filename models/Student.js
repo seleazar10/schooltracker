@@ -7,10 +7,10 @@ const StudentSchema = new Schema({
   //   type: String,
   //   required: true
   // },
-  studentId: {
-    type: Number,
-    required: true
-  },
+  // studentId: {
+  //   type: Number,
+  //   required: true
+  // },
   name: {
     type: String,
     required: true
@@ -89,10 +89,13 @@ const StudentSchema = new Schema({
   comments: {
     type: String
   },
-  teacherIds: {
-    type: Array
-  },
-  username: {
+  teachers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Teacher"
+    }
+  ],
+  email: {
     type: String,
     required: true
   },

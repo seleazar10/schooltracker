@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TeacherSchema = new Schema({
-  // teacherId: {
-  //   type: Number,
-  //   required: true
-  // },
+  teacherId: {
+    type: String
+  },
   name: {
     type: String,
     required: true
@@ -27,12 +26,19 @@ const TeacherSchema = new Schema({
     type: String,
     required: true
   },
-  studentIds: {
-    type: Array
-  },
+  students: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Student"
+    }
+  ],
   password: {
     type: String,
     required: true
+  },
+  loggedIn: {
+    type: Boolean,
+    default: false
   }
 });
 

@@ -178,16 +178,7 @@ module.exports = app => {
       } else return res.json(students);
     });
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Get student by id api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  app.get("/api/student/:id", function(req, res) {
-    db.Student.findOne({ _id: req.params.id })
-      .then(function(dbStudent) {
-        res.json(dbStudent);
-      })
-      .catch(function(err) {
-        res.json(err);
-      });
-  }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Create student api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Create student api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.post("/api/student/", function(req, res) {
     let { password } = req.body;
@@ -347,6 +338,3 @@ module.exports = app => {
       });
   });
 };
-// { _id: req.params.id },
-//           { $push: { studentIds: data.id } },
-//           { new: true }
