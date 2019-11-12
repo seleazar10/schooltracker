@@ -7,7 +7,7 @@ import Jumbotron from "../components/Jumbotron";
 import Box from "../components/Container/Admin";
 import { CardAnnouncements, CardAnnModify } from "../components/AdminCard";
 import { Col, Col2, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { TextArea, FormBtn } from "../components/Form";
 
 class Admin extends Component {
 
@@ -17,18 +17,18 @@ class Admin extends Component {
     };
 
     componentDidMount() {
-       this.loadAnnouncements();
+        this.loadAnnouncements();
     }
 
     loadAnnouncements = () => {
         API.getAdminAnnounce()
-        .then(res => this.setState({ announcements: res.data[0].announcement }))
-        .catch(err => console.log(err));
+            .then(res => this.setState({ announcements: res.data[0].announcement }))
+            .catch(err => console.log(err));
     }
 
     constructor(props) {
         super(props)
-        this.state = { show: true };
+        this.state = { show: false };
         this.toggleDiv = this.toggleDiv.bind(this)
     }
 
@@ -44,23 +44,23 @@ class Admin extends Component {
         });
     };
 
-    handleSubmit = () =>{
+    handleSubmit = () => {
         console.log(this.state.modifyAnnouncement)
-        this.setState({announcements: this.state.modifyAnnouncement});
+        this.setState({ announcements: this.state.modifyAnnouncement });
 
         axios.put('/api/admin/announcement', {
             announcement: this.state.modifyAnnouncement
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         // const updateAnn = {
         //     announcement: this.state.modifyAnnouncement
         // };
-        
+
         // API.saveAdminAnnounce({ updateAnn })
         // .then(res => {
         //     console.log(res);
@@ -79,15 +79,11 @@ class Admin extends Component {
                 </Jumbotron>
                 <Container >
                     <Row>
+                        
                         <Col >
                             <Container>
                                 <h1 className="text-center">Teacher Department</h1>
                                 <Row>
-                                    {/* <div className="col-4 mt-3 mb-4">
-                                        <button onClick={this.toggleDiv}>
-                                            Toggle Div
-                                        </button>
-                                    </div> */}
                                     <FormBtn onClick={this.toggleDiv}>
                                         Create Teacher
                         </FormBtn>
@@ -101,6 +97,7 @@ class Admin extends Component {
                                 {this.state.show && <Box />}
                             </Container>
                         </Col>
+
                         <Col2>
                             <Container>
                                 <h1 className="text-center">Student Department</h1>
@@ -119,14 +116,16 @@ class Admin extends Component {
                         </Col2>
                     </Row>
                 </Container>
+
                 <Container >
                     <CardAnnouncements announcements={this.state.announcements} />
                 </Container>
+
                 <Container >
                     <CardAnnModify>
-                        <TextArea 
-                        value={this.state.modifyAnnouncement}
-                        onChange={this.handleInputChange} />
+                        <TextArea
+                            value={this.state.modifyAnnouncement}
+                            onChange={this.handleInputChange} />
                         <button onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
                     </CardAnnModify>
 
