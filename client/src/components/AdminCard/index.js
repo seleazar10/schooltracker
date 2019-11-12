@@ -7,8 +7,8 @@ import "./style.css"
 export function CardAnnouncements(props) {
   return <div className="card mt-5">
     <div className="card-body text-center">
-      <h1 cclassName="card-title">Card title</h1>
-      <h4 className="card-text">Announcements</h4>
+      <h1 className="card-title">Current Announcemnt</h1>
+      <h4 className="card-text">Announcements: {props.announcements}</h4>
     </div>
     <div>
       {props.children}
