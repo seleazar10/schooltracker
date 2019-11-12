@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./style.css";
 
 // https://www.youtube.com/watch?v=QoLUB0QkUaE
 
@@ -49,30 +50,48 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={this.state.email}
-          onChange={this.handleChange}
-          required
-        />
+        <div className="container">
+          <div className="login-box">
+            <h1>Login</h1>
+            <div className="textbox">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={this.state.password}
-          onChange={this.handleChange}
-          required
-        />
+            <div className="textbox">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
 
-        <button onClick={() => this.handleSubmit("teacher")}>
-          Teacher Login
-        </button>
-        <button onClick={() => this.handleSubmit("student")}>
-          Student Login
-        </button>
+            <button
+              className="btn btn-primary mb-2"
+              onClick={() => this.handleSubmit("teacher")}
+            >
+              Teacher Login
+            </button>
+            <button
+              className="btn btn-primary mb-2"
+              onClick={() => this.handleSubmit("student")}
+            >
+              Student Login
+            </button>
+          </div>
+        </div>
+        <div className="footer">
+          <p>Footer</p>
+        </div>
       </div>
     );
   }
