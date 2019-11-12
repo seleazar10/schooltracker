@@ -9,18 +9,27 @@ class Box extends React.Component {
       teacherName: '',
       userName: '',
       userEmail: '',
-      classroomSub: ''
+      classroomSub: '',
+      aboutTeacher: '',
+      teacherPassword: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangeUserEmail = this.handleChangeUserEmail.bind(this);
     this.handleChangeclassroomSub = this.handleChangeclassroomSub.bind(this);
+    this.handleChangeaboutTeacher = this.handleChangeaboutTeacher.bind(this);
+    this.handleChangeteacherPassword = this.handleChangeteacherPassword.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ teacherName: event.target.value });
+  }
+
+  handleChangeteacherPassword(event) {
+    this.setState({ teacherPassword: event.target.value });
   }
 
   handleChangeUsername(event) {
@@ -35,11 +44,17 @@ class Box extends React.Component {
     this.setState({ classroomSub: event.target.value });
   }
 
+  handleChangeaboutTeacher(event) {
+    this.setState({ aboutTeacher: event.target.value });
+  }
+
   handleSubmit(event) {
     console.log('A name was submitted: ' + this.state.teacherName);
     console.log("A username was submitted: " + this.state.userName);
     console.log("An email was submitted: " + this.state.userEmail);
     console.log("A teaching subject was submitted: " + this.state.classroomSub);
+    console.log("An about teacher was submitted: " + this.state.aboutTeacher);
+    console.log("A password was submitted: " + this.state.teacherPassword);
     event.preventDefault();
   }
 
@@ -66,6 +81,16 @@ class Box extends React.Component {
           <Form.Group controlId="newclassroomSub">
             <Form.Label>Classroom Subject</Form.Label>
             <Form.Control type="text" placeholder="Enter Subject" value={this.state.classroomSub} onChange={this.handleChangeclassroomSub} />
+          </Form.Group>
+
+          <Form.Group controlId="newaboutTeacher">
+            <Form.Label>About Me</Form.Label>
+            <Form.Control type="text" placeholder="Enter About Me" value={this.state.aboutTeacher} onChange={this.handleChangeaboutTeacher} />
+          </Form.Group>
+
+          <Form.Group controlId="newteacherPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Enter Password" value={this.state.teacherPassword} onChange={this.handleChangeteacherPassword} />
           </Form.Group>
 
           <Button variant="primary" type="submit" value="Submit">
