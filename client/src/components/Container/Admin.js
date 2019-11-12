@@ -7,11 +7,15 @@ class Box extends React.Component {
     super(props);
     this.state = {
       teacherName: '',
-      userName: ''
+      userName: '',
+      userEmail: '',
+      classroomSub: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangeUserEmail = this.handleChangeUserEmail.bind(this);
+    this.handleChangeclassroomSub = this.handleChangeclassroomSub.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -23,8 +27,19 @@ class Box extends React.Component {
     this.setState({ userName: event.target.value });
   }
 
+  handleChangeUserEmail(event) {
+    this.setState({ userEmail: event.target.value});
+  }
+
+  handleChangeclassroomSub(event) {
+    this.setState({ classroomSub: event.target.value });
+  }
+
   handleSubmit(event) {
-    console.log('A name was submitted: ' + this.state.teacherName + " " + this.state.userName);
+    console.log('A name was submitted: ' + this.state.teacherName);
+    console.log("A username was submitted: " + this.state.userName);
+    console.log("An email was submitted: " + this.state.userEmail);
+    console.log("A teaching subject was submitted: " + this.state.classroomSub);
     event.preventDefault();
   }
 
@@ -41,6 +56,16 @@ class Box extends React.Component {
           <Form.Group controlId="newUserName">
             <Form.Label>Username</Form.Label>
             <Form.Control type="text" placeholder="Enter Username" value={this.state.userName} onChange={this.handleChangeUsername} />
+          </Form.Group>
+
+          <Form.Group controlId="newUserEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="Enter Email" value={this.state.userEmail} onChange={this.handleChangeUserEmail} />
+          </Form.Group>
+
+          <Form.Group controlId="newclassroomSub">
+            <Form.Label>Classroom Subject</Form.Label>
+            <Form.Control type="text" placeholder="Enter Subject" value={this.state.classroomSub} onChange={this.handleChangeclassroomSub} />
           </Form.Group>
 
           <Button variant="primary" type="submit" value="Submit">
