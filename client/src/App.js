@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import Auth from './pages/Auth';
 import Parent from "./pages/Parent";
 import Teacher from "./pages/Teacher";
-import Contact from "./pages/Contact";
 import Wrapper from "./components/Wrapper";
 import './App.css';
 import Chat from './components/Chat/Chat';
@@ -28,7 +27,6 @@ const App = () => {
           <Route exact path="/parent" component={Parent} />
           <Route exact path="/teacher" component={Teacher} />
           <Route path="/" exact component={Join} />
-          <Route path="/contact" component={Contact} />
           <Route path="/chat" component={Chat} />
         </Wrapper>
       </div>
