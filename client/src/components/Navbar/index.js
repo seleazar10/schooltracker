@@ -38,6 +38,14 @@ function Navbar() {
               Teacher
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              to="/admin"
+              className={window.location.pathname === "/admin" ? "nav-link active" : "nav-link"}
+            >
+              Admin
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
