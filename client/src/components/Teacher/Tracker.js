@@ -2,7 +2,7 @@ import React from 'react';
 import BehaviorTracker from "../BehaviorTracker/BehaviorTracker";
 import radiooptions from "../BehaviorTracker/radiooptions"
 import TeachComment from "../TeachComment/TeachComment";
-import TeaFileUpload from "../TeaFileUpload/TeaFileUpload"
+import TeaFileUpload from "../TeaFileUpload/TeaFIleUpload"
 
 
 function Tracker(props) {
