@@ -31,11 +31,10 @@ class Parent extends React.Component {
                 <OpenWeather />
 
                 
-
                 <ParTracker />
+              
 
                 <Tabs />
-
 
 
                 <Footer />
