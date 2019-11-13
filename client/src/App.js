@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 // import logo from './logo.svg';
 import Navbar from "./components/Navbar";
 // import Auth from "./pages/Auth";
@@ -8,18 +9,41 @@ import Parent from "./pages/Parent";
 import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
 import Login from "./components/Login/Login";
+import TeacherProfile from "./components/Teacher/Profile";
+// import StudentProfile from "./components/Student/Profile";
+import PrivateRoute from "./components/PrivateRoute";
 // import './App.css';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
+
+  const handleLogin = (user = {}) => {
+    setCurrentUser(user);
+  };
+
+  console.log(currentUser);
   return (
     <Router>
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} />
+          {/* <Route exact path="/" component={Login} /> */}
+          <Route
+            exact
+            path="/login"
+            render={() => <Login updateUser={handleLogin} />}
+          />
           <Route exact path="/parent" component={Parent} />
           <Route exact path="/teacher" component={Teacher} />
+
+          {/* TEACHER PROFILE/EDIT PAGE */}
+          <PrivateRoute path="/teacher/profile" user={currentUser}>
+            <Teacher data={currentUser} />
+          </PrivateRoute>
+          {/* STUDENT PROFILE/EDIT */}
+          {/* <PrivateRoute path="/student/profile" user={currentUser}>
+            <StudentProfile user={currentUser} />
+          </PrivateRoute> */}
         </Wrapper>
       </div>
     </Router>

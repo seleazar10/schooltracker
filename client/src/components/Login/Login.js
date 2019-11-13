@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 
 // https://www.youtube.com/watch?v=QoLUB0QkUaE
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -14,6 +15,7 @@ export default class Login extends Component {
       loginErrors: ""
     };
 
+    console.log("login props", this.props);
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -37,13 +39,22 @@ export default class Login extends Component {
         { withCredentials: true }
       )
       .then(response => {
-        console.log("res from login", response);
+        this.props.updateUser(response.data);
+        if (userType === "teacher") {
+          this.props.history.push("/teacher/profile");
+        } else {
+          this.props.history.push("/student/profile");
+        }
+
         // if (response.data.status === "created"){
         //   this.props.handleSuccessfulAuth(response.data);
         // }
       })
       .catch(error => {
         console.log("Login error", error);
+        this.setState({
+          loginErrors: `There was a login error: ${error}`
+        });
       });
   };
 
@@ -96,3 +107,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login);

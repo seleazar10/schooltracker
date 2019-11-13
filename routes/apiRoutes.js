@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
+// const router = express.Router();
 module.exports = app => {
   app.get("/", function(req, res) {
     res.send("Hello 🌏! Keep on Turning⚡️⚡️!");
