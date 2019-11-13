@@ -1,3 +1,8 @@
+*{
+  margin: 0px;
+  padding: 0px
+}
+
 .usercard{
     float: left;
     margin: 10px;
@@ -19,3 +24,20 @@
     height: 100px;
     }
   
+
+    /* .teachBg{
+      background-image:  linear-gradient(rgba(0, 0, 0, 0.027), rgba(0, 0, 0, 0)), url("https://i.imgur.com/XTn8lkS.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  
+    } */
+
+    .trackerCardBodyBg{
+      background-color: transparent;
+    }
+
+    .scoreTable{
+      border: solid 1px #000;
+    }
+    

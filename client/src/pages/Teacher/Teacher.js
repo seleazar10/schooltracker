@@ -5,6 +5,9 @@ import usersdb from "../../components/Teacher/usersdb";
 import UserCard from "../../components/Teacher/UserCard";
 
 import Tracker from "../../components/Teacher/Tracker"
+import BehaviorTracker from "../../components/BehaviorTracker/BehaviorTracker";
+
+
 
 
 class Teacher extends React.Component {
@@ -13,12 +16,38 @@ class Teacher extends React.Component {
     super()
     this.state = {
       users: usersdb,
-      selectedIDs: []
+      selectedIDs: [],
+      pillOne: "5",
+      pillTwo: "5",
+      pillThree: "5",
+      pillFour: "5",
+      teachComnt: "",
+      MissingWorkOption: "No"
+
+
 
     }
 
+
     this.handleChange = this.handleChange.bind(this)
     this.scrollToTracker = this.scrollToTracker.bind(this)
+    this.newSelection = this.newSelection.bind(this)
+
+    // file upload
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    //   this.fileInput = React.createRef();
+  }
+
+  newSelection(e) {
+
+
+    console.log(e.target.name);
+    console.log(e.target.value);
+
+    this.setState({ [e.target.name]: e.target.value })
+
+    console.log(this.state)
+
   }
 
   handleChange(id) {
@@ -26,7 +55,7 @@ class Teacher extends React.Component {
     this.setState((prevState) => {
 
       const updateSelection = prevState.users.map(userSelection => {
-        
+
         if (userSelection.id === id) {
           // userSelection.selected = !userSelection.selected
 
@@ -42,11 +71,7 @@ class Teacher extends React.Component {
             // console.log(prevState.selectedIDs)
           }
 
-          // if (userSelection.selected) {
-          //   userSelection.selected = false;
-          // } else {
-          //   userSelection.selected = true;
-          // }
+
 
 
 
@@ -72,21 +97,37 @@ class Teacher extends React.Component {
   }
 
 
-  scrollToTracker(){
+  scrollToTracker() {
     console.log('clicked')
 
     this.setState((prevState) => {
 
-    
-    console.log(prevState.selectedIDs)
-    console.log(prevState.users)
+      console.log(prevState)
+
+      // console.log(prevState.selectedIDs)
+      // console.log(prevState.users)
     })
 
-    // console.log(pillOne.val())
 
-    
+
+
 
   }
+
+  //file upload
+
+  // handleSubmit(event) {
+  //   // highlight-range{4}
+  //   event.preventDefault();
+  //   alert(
+  //     `Selected file - ${
+  //       this.fileInput.current.files[0].name
+  //     }`
+  //   );
+  // }
+
+
+
 
 
   render() {
@@ -97,24 +138,33 @@ class Teacher extends React.Component {
 
 
     return (
-      <div>
+      <div className="teachBg">
         <div className="container mb-5">
-          <h1 className="headText text-center">First Hour - Roster</h1>
 
-          <div className="mb-5">
-          {userList}
+          <div className="roster">
+            <div className="card mt-5 trackerCardBodyBg">
+              <div className="card-header bg-dark text-light text-center">
+                <h5>First Hour - Roster</h5>
+              </div>
+              <div className="card-body">
+
+                {userList}
+
+
+              </div>
+            </div>
+
+            {this.state.users.map((user) => {
+              if (user.selected) {
+                return <div>{user.name + " ----and the student ID is:----- "} {user.id}</div>
+              }
+            })}
+
           </div>
 
-         
 
 
-           <Tracker />
-
-           {this.state.users.map((user) => {
-          if (user.selected) { 
-            return <div>{user.name + " ----and the student ID is:----- "} {user.id}</div>}
-        })}
-
+          <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
 
         </div>
 
