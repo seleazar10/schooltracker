@@ -8,6 +8,7 @@ import Parent from "./pages/Parent/Parent";
 import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
 import Admin from './pages/Admin';
+import Contact from './pages/Contact';
 // import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/parent" component={Parent} />
           <Route exact path="/teacher" component={Teacher} />
           <Route exact path="/admin" component={Admin} />
+          <Route exact path="/contact" component={Contact} />
       </Wrapper>
     </div>
     </Router>
