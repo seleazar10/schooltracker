@@ -6,13 +6,16 @@ import "./style.css";
 // https://www.youtube.com/watch?v=QoLUB0QkUaE
 
 class Login extends Component {
+  // userData;
+
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
-      password: "",
-      loginErrors: ""
+      password: ""
+      // loginErrors: ""
+      // rememberMe: false
     };
 
     console.log("login props", this.props);
@@ -20,13 +23,44 @@ class Login extends Component {
     // this.handleChange = this.handleChange.bind(this);
   }
 
+  // React Life Cycle
+  componentDidMount() {
+    this.userData = JSON.parse(localStorage.getItem("user"));
+    if (localStorage.getItem("user")) {
+      this.setState({
+        email: this.userData.email,
+        password: this.userData.password
+      });
+    } else {
+      this.setState({
+        email: "",
+        password: ""
+      });
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem("user", JSON.stringify(nextState));
+  }
+
+  // componentDidMount() {
+  //   const rememberMe = localStorage.getItem("rememberMe") === "true";
+  //   const user = rememberMe ? localStorage.getItem("user") : "";
+  //   this.setState({ user, rememberMe });
+  // }
+
   handleChange = event => {
+    const input = event.target;
+    const value = input.type === "checkbox" ? input.checked : input.value;
     this.setState({
       [event.target.name]: event.target.value
+      // [event.target.name]: value
     });
   };
   handleSubmit = userType => {
-    const { email, password } = this.state;
+    const { email, password, rememberMe } = this.state;
+    // localStorage.setItem("rememberMe", rememberMe);
+    // localStorage.setItem("email", rememberMe ? email : "");
+    // localStorage.setItem("password", rememberMe ? password : "");
 
     axios
       .post(
@@ -98,6 +132,15 @@ class Login extends Component {
             >
               Student Login
             </button>
+            <label>
+              <input
+                name="rememberMe"
+                checked={this.state.rememberMe}
+                onChange={this.handleChange}
+                type="checkbox"
+              />{" "}
+              Remember me
+            </label>
           </div>
         </div>
         <div className="footer">

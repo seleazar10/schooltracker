@@ -74,11 +74,12 @@ class Teacher extends React.Component {
       <div>
         <div className="container mb-5">
           <h1 className="headText text-center">First Hour - Roster</h1>
-          <div>Name: {this.props.data.name}</div>
-          <div>Subject: {this.props.data.classroomSubject}</div>
-          <div>Email: {this.props.data.email}</div>
-          <div>About Me: {this.props.data.aboutMe}</div>
-
+          <div className="card">
+            <div>Name: {this.props.data.name}</div>
+            <div>Subject: {this.props.data.classroomSubject}</div>
+            <div>Email: {this.props.data.email}</div>
+            <div>About Me: {this.props.data.aboutMe}</div>
+          </div>
           <div className="mb-5">{userList}</div>
 
           <Tracker />
