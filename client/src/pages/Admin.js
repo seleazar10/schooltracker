@@ -47,26 +47,30 @@ class Admin extends Component {
     handleSubmit = () => {
         console.log(this.state.modifyAnnouncement)
         this.setState({ announcements: this.state.modifyAnnouncement });
-
-        axios.put('/api/admin/announcement', {
-            announcement: this.state.modifyAnnouncement
-        })
-            .then(function (response) {
-                console.log(response);
+        if(this.state.announcements) {
+            // PUT request
+            axios.put('/api/admin/announcement', {
+                announcement: this.state.modifyAnnouncement
             })
-            .catch(function (error) {
-                console.log(error);
-            });
-        // const updateAnn = {
-        //     announcement: this.state.modifyAnnouncement
-        // };
-
-        // API.saveAdminAnnounce({ updateAnn })
-        // .then(res => {
-        //     console.log(res);
-        //     console.log(res.data);
-        // })
-        // .catch(err => console.log(err));
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            // POST request
+            axios.post('/api/admin/announcement', {
+                announcement: this.state.modifyAnnouncement
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        
     };
 
 
@@ -79,7 +83,7 @@ class Admin extends Component {
                 </Jumbotron>
                 <Container >
                     <Row>
-                        
+
                         <Col >
                             <Container>
                                 <h1 className="text-center">Teacher Department</h1>
