@@ -1,0 +1,43 @@
+*{
+  margin: 0px;
+  padding: 0px
+}
+
+.usercard{
+    float: left;
+    margin: 10px;
+    padding: 0 10px;
+    border: solid 1px black;
+  }
+  
+  .footer {
+    clear: both;
+    /* position: absolute; */
+    background-color: rgb(229, 240, 136);
+    text-align: center;
+    color:white;
+    /* border-top: 5px solid  rgb(175, 167, 166); */
+    overflow: hidden;
+    padding-top: 10px;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    }
+  
+
+    /* .teachBg{
+      background-image:  linear-gradient(rgba(0, 0, 0, 0.027), rgba(0, 0, 0, 0)), url("https://i.imgur.com/XTn8lkS.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  
+    } */
+
+    .trackerCardBodyBg{
+      background-color: transparent;
+    }
+
+    .scoreTable{
+      border: solid 1px #000;
+    }
+    

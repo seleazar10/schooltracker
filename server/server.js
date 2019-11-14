@@ -1,7 +1,7 @@
 //Dependencies
 const http = require('http');
 const express = require("express");
-const routes = require("../routes/apiRoutes");
+const routes = require("./routes/apiRoutes");
 const mongoose = require("mongoose");
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 const socketio = require('socket.io');
@@ -17,7 +17,7 @@ const io = socketio(server);
 const db = require("../models");
 
 //Established a port to listen on
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8000;
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));
