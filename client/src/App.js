@@ -17,6 +17,7 @@ import Join from './components/Join/Join';
 
 
 
+
 const App = () => {
   import Admin from './pages/Admin';
   import Contact from './pages/Contact';
