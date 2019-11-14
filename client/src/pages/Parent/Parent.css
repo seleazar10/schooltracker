@@ -1,0 +1,7 @@
+ .parentBg{
+      background-image:  linear-gradient(rgba(0, 0, 0, 0.027), rgba(0, 0, 0, 0)), url("https://i.imgur.com/XTn8lkS.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  
+    }
