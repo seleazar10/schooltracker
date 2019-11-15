@@ -17,5 +17,9 @@ export default {
   },
   saveAdminAnnounce: function(annUpdate) {
     return axios.put("/api/admin/announcement", annUpdate)
+  },
+  studentEval: function(students) {
+    return axios.put("/api/student/update/5dbf1ae6ba23ca5f11779e4d", students)
   }
+
 };
