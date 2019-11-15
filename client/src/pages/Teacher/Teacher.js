@@ -1,6 +1,6 @@
 import React from "react";
 import "./Teacher.css";
-
+import axios from "axios";
 import usersdb from "../../components/Teacher/usersdb";
 import UserCard from "../../components/Teacher/UserCard";
 
@@ -9,9 +9,10 @@ import Tracker from "../../components/Teacher/Tracker";
 class Teacher extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+
     this.state = {
-      users: props.data.studentIds,
+      studentIds: props.data.students,
+      students: [],
       selectedIDs: []
     };
 
@@ -19,11 +20,30 @@ class Teacher extends React.Component {
     this.scrollToTracker = this.scrollToTracker.bind(this);
   }
 
+  componentDidMount() {
+    axios
+      .get("/api/student/all/")
+      .then(response => {
+        const students = response.data;
+        const filteredStudents = students.filter(({ _id }) =>
+          this.state.studentIds.includes(_id)
+        );
+        console.log("Filtered Students", filteredStudents);
+        this.setState({ students: filteredStudents });
+      })
+      .catch(error => {
+        console.log("No Data", error);
+        this.setState({
+          loginErrors: `There was a login error: ${error}`
+        });
+      });
+  }
+
   handleChange(id) {
     this.setState(prevState => {
       const updateSelection = prevState.users.map(userSelection => {
         if (userSelection.id === id) {
-          // userSelection.selected = !userSelection.selected
+          // userSelection.selected = !userSelection.selected;
 
           let indexSelected = prevState.selectedIDs.indexOf(id);
 
@@ -66,7 +86,7 @@ class Teacher extends React.Component {
   }
 
   render() {
-    const userList = this.state.users.map(user => (
+    const userList = this.state.students.map(user => (
       <UserCard key={user} user={user} handleChange={this.handleChange} />
     ));
 
@@ -84,7 +104,7 @@ class Teacher extends React.Component {
 
           <Tracker />
 
-          {this.state.users.map(user => {
+          {this.state.studentIds.map(user => {
             if (user.selected) {
               return (
                 <div>

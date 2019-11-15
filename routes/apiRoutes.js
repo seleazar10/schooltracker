@@ -19,9 +19,11 @@ module.exports = app => {
   app.get("/api/teacher/:id", function(req, res) {
     console.log("LOOKING FOR TEACHER BY ID");
     db.Teacher.findOne({ _id: req.params.id })
+      //populate students
+      .populate("students")
       .then(function(dbTeacher) {
         console.log(`Teacher Data: ${dbTeacher}`);
-        res.json(dbTeacher);
+        res.json(dbTeacher.studentIds);
       })
       .catch(function(err) {
         res.json(err);
@@ -37,7 +39,7 @@ module.exports = app => {
       .then(function(data) {
         return db.Teacher.findOneAndUpdate(
           { _id: req.params.id },
-          { $push: { studentIds: data.id } },
+          { $push: { students: data.id } },
           { new: true }
         );
       })
@@ -304,6 +306,18 @@ module.exports = app => {
     });
   });
 
+  // >>>>>>>>>>>Route to get all teacher's and pupulate them with their notes
+  app.get("/populatedteacher", function(req, res) {
+    db.Teacher.find({})
+      .populate("studentIdsula")
+      .then(function(dbTeacher) {
+        res.json(dbTeacher);
+      })
+      .catch(function(err) {
+        res.json(dbTeacher);
+      });
+  });
+
   // Deletes a Teacher by Id
   app.delete("/api/teacher/:id", function(req, res) {
     let id = req.params.id;
@@ -325,16 +339,18 @@ module.exports = app => {
   app.post("/api/teacher/studentadd/:id", (req, res) => {
     console.log("Request:", req.body);
     console.log("Id:", req.params.id);
-
-    db.Teacher.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $push: { students: req.body.studentId } }
-    )
-      .then(function(dbTeacher) {
-        res.json(dbTeacher);
-      })
-      .catch(function(err) {
-        res.json(err);
-      });
+    let id = req.body.id;
+    db.Student.findById({ _id: id }).then(dbStudent => {
+      db.Teacher.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $push: { students: dbStudent } }
+      )
+        .then(function(dbTeacher) {
+          res.json(dbTeacher);
+        })
+        .catch(function(err) {
+          res.json(err);
+        });
+    });
   });
 };

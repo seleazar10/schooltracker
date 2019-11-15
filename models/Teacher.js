@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TeacherSchema = new Schema({
-  teacherId: {
-    type: String
-  },
+  // teacherId: {
+  //   type: String
+  // },
   name: {
     type: String,
     required: true
@@ -35,10 +35,6 @@ const TeacherSchema = new Schema({
   password: {
     type: String,
     required: true
-  },
-  loggedIn: {
-    type: Boolean,
-    default: false
   }
 });
 

@@ -6,7 +6,7 @@ function UserCard(props) {
       <input
         type="checkbox"
         checked={props.user.selected}
-        onChange={event => props.handleChange(props.user.id)}
+        onChange={event => props.handleChange(props.user._id)}
       ></input>
       <p>{props.user.name}</p>
     </div>
