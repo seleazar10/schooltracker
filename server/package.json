@@ -27,10 +27,7 @@
     "if-env": "^1.0.4",
     "mongodb": "^3.3.3",
     "mongoose": "^5.7.7",
-<<<<<<< HEAD:server/package.json
-    "react-translate-component": "^0.15.1"
-=======
+    "react-translate-component": "^0.15.1",
     "react-bootstrap": "^1.0.0-beta.14"
->>>>>>> 3f8bb806391414748457fdc8759b7d7277037258:package.json
   }
 }
