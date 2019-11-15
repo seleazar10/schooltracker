@@ -25,7 +25,8 @@ class Teacher extends React.Component {
       pillFour: "5",
       teachComnt: "",
       MissingWorkOption: "No",
-      studentdb: []
+      studentdb: [],
+      show: false
 
     }
 
@@ -33,6 +34,7 @@ class Teacher extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.newSelection = this.newSelection.bind(this)
+    
 
   }
 
