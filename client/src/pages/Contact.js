@@ -12,9 +12,9 @@ function Contact() {
 
     return (
         <div>
-            <Jumbotron backgroundImage="../../images/homepageExample.jpg">
-                <h1>This is the Contact page</h1>
-                <h2>Welcome with a login</h2>
+            <Jumbotron backgroundImage="../../images/chatimg.jpg">
+                <h1 className="chatText">This is the Contact page</h1>
+                <h2 className="chatTextTwo">Welcome with a login</h2>
             </Jumbotron>
 
             <div className="joinOuterContainer">
