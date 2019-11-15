@@ -1,6 +1,8 @@
 import React from "react";
 import "./Teacher.css"
 
+import axios from "axios";
+import API from "../../utils/API";
 import usersdb from "../../components/Teacher/usersdb";
 import UserCard from "../../components/Teacher/UserCard";
 
@@ -22,21 +24,30 @@ class Teacher extends React.Component {
       pillThree: "5",
       pillFour: "5",
       teachComnt: "",
-      MissingWorkOption: "No"
-
-
+      MissingWorkOption: "No",
+      studentdb: []
 
     }
 
 
     this.handleChange = this.handleChange.bind(this)
-    this.scrollToTracker = this.scrollToTracker.bind(this)
+    this.handleClick = this.handleClick.bind(this)
     this.newSelection = this.newSelection.bind(this)
 
-    // file upload
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    //   this.fileInput = React.createRef();
   }
+
+  componentDidMount() {
+    axios.get("/api/student/all/")
+      .then(res => {
+        this.setState({ studentdb: res.data });
+        console.log(this.state.studentdb);
+        console.log(this.state.studentdb[0]._id)
+
+      })
+  }
+
+
+
 
   newSelection(e) {
 
@@ -54,11 +65,9 @@ class Teacher extends React.Component {
 
     this.setState((prevState) => {
 
-      const updateSelection = prevState.users.map(userSelection => {
+      const updateSelection = prevState.studentdb.map(userSelection => {
 
-        if (userSelection.id === id) {
-          // userSelection.selected = !userSelection.selected
-
+        if (userSelection._id === id) {
 
           let indexSelected = prevState.selectedIDs.indexOf(id)
 
@@ -68,20 +77,13 @@ class Teacher extends React.Component {
           } else {
             userSelection.selected = true;
             prevState.selectedIDs.push(id)
-            // console.log(prevState.selectedIDs)
+            console.log(prevState.selectedIDs)
           }
 
-
-
-
-
-
         }
-
         return userSelection
 
       })
-
       return {
 
         users: updateSelection
@@ -97,43 +99,26 @@ class Teacher extends React.Component {
   }
 
 
-  scrollToTracker() {
-    console.log('clicked')
-
-    this.setState((prevState) => {
-
-      console.log(prevState)
-
-      // console.log(prevState.selectedIDs)
-      // console.log(prevState.users)
+  handleClick() {
+    this.state.selectedIDs.forEach(id => {
+      const studentUpdateObj = {
+        pillar1: this.state.pillOne,
+        pillar2: this.state.pillTwo,
+        pillar3: this.state.pillThree,
+        pillar4: this.state.pillFour,
+        comments: this.state.teachComnt
+      };
+      API.studentEval(id, studentUpdateObj).then((update) => {
+        console.log("update worked for student!");
+      }).catch(err => console.log(err));
     })
-
-
-
-
-
   }
-
-  //file upload
-
-  // handleSubmit(event) {
-  //   // highlight-range{4}
-  //   event.preventDefault();
-  //   alert(
-  //     `Selected file - ${
-  //       this.fileInput.current.files[0].name
-  //     }`
-  //   );
-  // }
-
-
-
 
 
   render() {
 
-    const userList = this.state.users.map(user =>
-      <UserCard key={user.id} user={user} handleChange={this.handleChange} />
+    const userList = this.state.studentdb.map(user =>
+      <UserCard key={user._id} user={user} handleChange={this.handleChange} />
     )
 
 
@@ -154,9 +139,9 @@ class Teacher extends React.Component {
               </div>
             </div>
 
-            {this.state.users.map((user) => {
+            {this.state.studentdb.map((user) => {
               if (user.selected) {
-                return <div>{user.name + " ----and the student ID is:----- "} {user.id}</div>
+                return <div>{user.name + " ----and the student ID is:----- "} {user._id}</div>
               }
             })}
 
@@ -168,7 +153,7 @@ class Teacher extends React.Component {
 
         </div>
 
-        <footer className="footer card-footer bg-success mt-5"><i className="fa fa-arrow-right fa-4x" onClick={this.scrollToTracker}></i></footer>
+        <footer className="footer card-footer bg-success mt-5"><i className="fa fa-arrow-right fa-4x" onClick={this.handleClick}></i></footer>
 
       </div>
     )
