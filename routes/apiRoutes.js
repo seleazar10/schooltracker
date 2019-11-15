@@ -185,9 +185,27 @@ module.exports = app => {
       });
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update a Student Object // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+  app.put("/api/student/eval/:id", function (req, res) {
+    let id = req.params.id
+    console.log(id);
+    const updateObj = req.body;
+    console.log(updateObj);
+    db.Student.findOneAndUpdate({ _id: id }, { $set: updateObj }, {
+      upsert: true
+    }, function (err, doc) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: err });
+      }
+      res.json(doc);
+    })
+    // res.json(updateObj);
+  });
+
+
   app.put("/api/student/update/:id", function (req, res) {
     let id = req.params.id;
-    db.Student.findOne({ _id: id }, function (err, foundObject) {
+    db.Student.findOneAndUpdate({ _id: id }, function (err, foundObject) {
       if (err) {
         console.log(err);
         res.status(500).send();

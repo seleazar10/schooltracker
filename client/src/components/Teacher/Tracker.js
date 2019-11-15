@@ -20,11 +20,11 @@ function Tracker(props) {
                 
 
 
-                <div class="card-body">
+                <div className="card-body">
 
 
-                    <table class="table bg-white scoreTable">
-                        <thead class="thead-dark bg-success text-center">
+                    <table className="table bg-white scoreTable">
+                        <thead className="thead-dark bg-success text-center">
                             <tr>
                                 <th scope="col">Category and Score</th>
                                 {/* <th scope="col">Score</th> */}
@@ -83,7 +83,7 @@ function Tracker(props) {
                 <div className="card-header bg-dark text-light">
                     <h5>Share Documents</h5>
                 </div>
-                <div class="card-body">
+                <div className="card-body">
 
 
 
