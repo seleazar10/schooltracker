@@ -18,8 +18,13 @@ export default {
   saveAdminAnnounce: function(annUpdate) {
     return axios.put("/api/admin/announcement", annUpdate)
   },
-  studentEval: function(students) {
-    return axios.put("/api/student/update/5dbf1ae6ba23ca5f11779e4d", students)
+  getStudents: function() {
+    return axios.get("/api/student/all/")
+  },
+  studentEval: function( id , students) {
+    console.log(students);
+    // return true
+    return axios.put("/api/student/eval/" + id , students)
   }
 
 };
