@@ -4,4 +4,16 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 65px;
+}
+
+.chatText{
+color:red;
+font-size: 63px;
+}
+
+.chatTextTwo{
+color:blue;
+font-size: 45px;
+font-family: sans-serif;
 }

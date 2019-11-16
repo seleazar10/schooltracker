@@ -1,3 +1,10 @@
 node_modules
 client/node_modules
+<<<<<<< HEAD
+package-lock.json
+client/package-lock.json
 .env
+/netlify
+=======
+.env
+>>>>>>> 3f8bb806391414748457fdc8759b7d7277037258
