@@ -16,7 +16,7 @@ class Teacher extends React.Component {
     this.state = {
       users: usersdb,
       selectedIDs: [],
-      selectedNames: [],
+      // selectedNames: [],
       pillOne: "5",
       pillTwo: "5",
       pillThree: "5",
@@ -96,6 +96,9 @@ class Teacher extends React.Component {
     })
 
     console.log('checked ' + id)
+
+
+
   }
 
 
@@ -137,67 +140,13 @@ class Teacher extends React.Component {
               </div>
             </div>
 
-            {this.state.studentdb.map((user) => {
-              if (user.selected) {
-                console.log(user.name)
 
-              
 
-                // this.state.selectedNames
-
-                if(!this.state.selectedNames.includes(user.name)){
-
-                  
-
-                  // this.setState((prevState) => {selectedNames: this.state.selectedNames.push(user.name + ", ")})
-
-                }
-
-                
-              
-
-                
+           
 
 
 
-                // return
 
-
-              }else{
-
-                let nameSelected = this.state.selectedNames.indexOf(user.name)
-
-                if( nameSelected >-1){
-
-
-                  this.setState( {selectedNames: this.state.selectedNames.splice(nameSelected, 1)})
-                
-
-                  
-                  // return 
-
-
-
-                  
-                }else{
-                  
-                  
-                }
-
-                // let indexSelected = prevState.selectedIDs.indexOf(id)
-
-                // if (indexSelected > -1) {
-                //   userSelection.selected = false;
-                //   prevState.selectedIDs.splice(indexSelected, 1)
-                // } else {
-                //   userSelection.selected = true;
-                //   prevState.selectedIDs.push(id)
-                //   console.log(prevState.selectedIDs)
-      
-                // }
-
-              }
-            })}
           </div>
 
 
@@ -209,7 +158,27 @@ class Teacher extends React.Component {
             this.state.show ?
 
               <div className="mb-4">
-                <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
+                <Tracker values={this.state} selectNames=
+                {this.state.studentdb.filter((user) => {
+
+
+                  return (user.selected)
+
+
+
+                }).map((user) => {
+
+
+
+
+                  return (user.name)
+
+
+                }).join(', ')
+
+
+
+                } newSelection={(e) => this.newSelection(e)} />
 
               </div>
 
