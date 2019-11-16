@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 import BehaviorTracker from "../BehaviorTracker/BehaviorTracker";
-import radiooptions from "../BehaviorTracker/radiooptions"
+import radiooptions from "../BehaviorTracker/radiooptions";
 import TeachComment from "../TeachComment/TeachComment";
-import TeaFileUpload from "../TeaFileUpload/TeaFIleUpload"
-
+import TeaFileUpload from "../TeaFileUpload/TeaFIleUpload";
 
 function Tracker(props) {
 
@@ -59,80 +58,47 @@ function Tracker(props) {
                                             {option.question}
                                         </th> */}
 
-
-
-
-                                            <td scope="row" className="optionsClm ">
-                                                <form className="text-center form-check-inline">
-                                                    <BehaviorTracker values={props.values} data={option} newSelection={(e) => props.newSelection(e)} />
-                                                </form>
-                                            </td>
-
-
-                                        </tr>
-                                    </div>
-                                )}
-
-                            </div>
-
-
-
-
-                        </tbody>
-                    </table>
-
-
-
-                </div>
-            </div>
-
-
-
-
-            {/* textbox */}
-
-
-            <TeachComment values={props.values} newSelection={(e) => props.newSelection(e)} />
-
-
-
-            {/* upload btn */}
-
-            <div className="card mt-5">
-                <div className="card-header bg-dark text-light">
-                    <h5>Share Documents</h5>
-                </div>
-                <div className="card-body">
-
-
-
-                    {/* file Upload */}
-
-                    <TeaFileUpload />
-
-
-                </div>
-            </div>
-
-
-
-       
-
-
-
-
-
-
-
+                      <td scope="row" className="optionsClm ">
+                        <form className="text-center form-check-inline">
+                          <BehaviorTracker
+                            values={props.values}
+                            data={option}
+                            newSelection={e => props.newSelection(e)}
+                          />
+                        </form>
+                      </td>
+                    </tr>
+                  </div>
+                ))}
+              </div>
+            </tbody>
+          </table>
         </div>
+      </div>
 
+      {/* textbox */}
 
+      <TeachComment
+        values={props.values}
+        newSelection={e => props.newSelection(e)}
+      />
 
+      {/* upload btn */}
 
-    )
+      <div className="card mt-5">
+        <div className="card-header bg-dark text-light">
+          <h5>Share Documents</h5>
+        </div>
+        <div className="card-body">
+          {/* file Upload */}
 
-    console.log('tracker')
+          <TeaFileUpload />
+        </div>
+      </div>
+    </div>
+  );
+
+  console.log("tracker");
 }
-
 
 export default Tracker;
