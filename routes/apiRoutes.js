@@ -218,6 +218,7 @@ module.exports = app => {
 
   app.get("/api/student/all/", function(req, res) {
     db.Student.find({}, function(error, students) {
+      console.log(error, students);
       if (error) {
         console.log(error);
       } else return res.json(students);
@@ -250,9 +251,31 @@ module.exports = app => {
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update a Student Object // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+  app.put("/api/student/eval/:id", function(req, res) {
+    let id = req.params.id;
+    console.log(id);
+    const updateObj = req.body;
+    console.log(updateObj);
+    db.Student.findOneAndUpdate(
+      { _id: id },
+      { $set: updateObj },
+      {
+        upsert: true
+      },
+      function(err, doc) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({ error: err });
+        }
+        res.json(doc);
+      }
+    );
+    // res.json(updateObj);
+  });
+
   app.put("/api/student/update/:id", function(req, res) {
     let id = req.params.id;
-    db.Student.findOne({ _id: id }, function(err, foundObject) {
+    db.Student.findOneAndUpdate({ _id: id }, function(err, foundObject) {
       if (err) {
         console.log(err);
         res.status(500).send();
@@ -262,6 +285,9 @@ module.exports = app => {
         } else {
           if (req.body.name) {
             foundObject.name = req.body.name;
+          }
+          if (req.body.missingwork) {
+            foundObject.missingwork = req.body.missingwork;
           }
           if (req.body.pillar1) {
             foundObject.pillar1 = req.body.pillar1;
@@ -395,5 +421,55 @@ module.exports = app => {
           res.json(err);
         });
     });
+  });
+  // Admin creates a new announcement
+  app.post("/api/admin/announcement", function(req, res) {
+    let newAnnouncement = req.body;
+    console.log(`Announcement added: ${newAnnouncement}`);
+    db.Admin.create(newAnnouncement)
+      .then(function(dbAnnouncement) {
+        return res.json(dbAnnouncement);
+      })
+      .catch(err => {
+        console.log("ERROR ON Announcement FIND", err);
+        res.json(err.message);
+      });
+  });
+
+  // Admin updates an announcement
+  app.put("/api/admin/announcement", function(req, res) {
+    let newAnnouncement = req.body;
+    console.log(`Announcement added: ${newAnnouncement}`);
+    db.Admin.updateMany(newAnnouncement)
+      .then(function(dbAnnouncement) {
+        return res.json(dbAnnouncement);
+      })
+      .catch(err => {
+        console.log("ERROR ON Announcement FIND", err);
+        res.json(err.message);
+      });
+  });
+
+  // Find all Admin announcements
+  app.get("/api/admin/announcement", function(req, res) {
+    db.Admin.find({}, function(error, announce) {
+      if (error) {
+        console.log(error);
+      } else return res.json(announce);
+    });
+  });
+
+  // Admin deletes an announcement
+  app.delete("/api/admin/announcement", function(req, res) {
+    let newAnnouncement = req.body;
+    console.log(`Announcement added: ${newAnnouncement}`);
+    db.Admin.deleteMany(newAnnouncement)
+      .then(function(dbAnnouncement) {
+        return res.json(dbAnnouncement);
+      })
+      .catch(err => {
+        console.log("ERROR ON Announcement FIND", err);
+        res.json(err.message);
+      });
   });
 };

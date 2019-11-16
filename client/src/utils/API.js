@@ -1,20 +1,29 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Gets all teachers
   getTeachers: function() {
-    return axios.get("/api/teachers");
+    return axios.get("/api/teacher/all/");
   },
   // Gets the book with the given id
-  getTeacher: function(id) {
-    return axios.get("/api/teacher/" + id);
+  getTeacherId: function() {
+    return axios.get("/api/teacher/:id");
   },
-  // Deletes the book with the given id
-  deleteTeacher: function(id) {
-    return axios.delete("/api/teacher/" + id);
+  getAdminAnnounce: function() {
+    return axios.get("/api/admin/announcement");
   },
-  // Saves a book to the database
-  saveTeacher: function(teacherData) {
-    return axios.post("/api/Teacher", teacherData);
+  deleteAdminAnnounce: function() {
+    return axios.delete("/api/admin/announcement");
+  },
+  saveAdminAnnounce: function(annUpdate) {
+    return axios.put("/api/admin/announcement", annUpdate);
+  },
+  getStudents: function() {
+    return axios.get("/api/student/all/");
+  },
+  studentEval: function(id, students) {
+    console.log(students);
+    // return true
+    return axios.put("/api/student/eval/" + id, students);
   }
 };

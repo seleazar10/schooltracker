@@ -6,7 +6,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // import logo from './logo.svg';
 import Navbar from "./components/Navbar";
 // import Auth from "./pages/Auth";
-import Parent from "./pages/Parent";
+import Chat from "./components/Chat/Chat";
+import Admin from "./pages/Admin";
+import Contact from "./pages/Contact";
+
+import Parent from "./pages/Parent/Parent";
 import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
 import Login from "./components/Login/Login";
@@ -56,6 +60,10 @@ function App() {
           {/* <PrivateRoute path="/student/profile" user={currentUser}>
             <StudentProfile user={currentUser} />
           </PrivateRoute> */}
+          <Route exact path="/teacher" component={Teacher} />
+          <Route path="/chat" component={Chat} />
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/contact" component={Contact} />
         </Wrapper>
       </div>
     </Router>

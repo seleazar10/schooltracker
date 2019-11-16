@@ -102,6 +102,9 @@ const StudentSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  missingwork: {
+    type: String,
   }
 });
 

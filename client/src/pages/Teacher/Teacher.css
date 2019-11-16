@@ -1,3 +1,8 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 .usercard {
   float: left;
   margin: 10px;
@@ -19,6 +24,43 @@
   height: 100px;
 }
 .card {
+  color: black;
   font-size: 18px;
-  text-align: center;
+}
+/* .teachBg{
+      background-image:  linear-gradient(rgba(0, 0, 0, 0.027), rgba(0, 0, 0, 0)), url("https://i.imgur.com/XTn8lkS.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  
+    } */
+
+.trackerCardBodyBg {
+  background-color: transparent;
+}
+
+.scoreTable {
+  border: solid 1px #000;
+}
+
+.fa {
+  margin: 0 25px;
+}
+
+.studentDisplayBoxes {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.418), rgba(0, 0, 0, 0.603)),
+    url("https://i.imgur.com/OXkOoq4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.trackerHeader {
+  font-family: "Permanent Marker", cursive;
+  font-size: 190px;
+}
+
+.slogan {
+  font-family: "Dancing Script", cursive;
+  font-size: 30px;
 }

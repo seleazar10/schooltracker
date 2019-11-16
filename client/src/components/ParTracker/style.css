@@ -1,0 +1,35 @@
+
+  
+  
+.behaviorColor{
+    background-color: blue;
+}
+  
+  .colDesBtn{
+    padding: 10px 30px;
+  }
+  
+  .bg-orange{
+    background-color: #b77d01;
+  }
+  
+  .orang{
+  
+    background-color: #b77d01;
+    
+  }
+  
+  hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    height: 600px;
+  
+  
+    
+    
+  } 
