@@ -14,7 +14,7 @@ function Tracker(props) {
             <div className="card-header bg-white text-dark text-center">
                 <h4>Behavior Tracker</h4>
               </div>
-                <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p>
+                {/* <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p> */}
                 {/* <h5 className="card-header studentId"> <span></span></h5> */}
 
                 
