@@ -13,18 +13,17 @@ export default {
     return axios.get("/api/admin/announcement");
   },
   deleteAdminAnnounce: function() {
-    return axios.delete("/api/admin/announcement")
+    return axios.delete("/api/admin/announcement");
   },
   saveAdminAnnounce: function(annUpdate) {
-    return axios.put("/api/admin/announcement", annUpdate)
+    return axios.put("/api/admin/announcement", annUpdate);
   },
   getStudents: function() {
-    return axios.get("/api/student/all/")
+    return axios.get("/api/student/all/");
   },
-  studentEval: function( id , students) {
+  studentEval: function(id, students) {
     console.log(students);
     // return true
-    return axios.put("/api/student/eval/" + id , students)
+    return axios.put("/api/student/eval/" + id, students);
   }
-
 };
