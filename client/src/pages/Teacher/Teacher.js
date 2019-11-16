@@ -7,10 +7,7 @@ import usersdb from "../../components/Teacher/usersdb";
 import UserCard from "../../components/Teacher/UserCard";
 
 import Tracker from "../../components/Teacher/Tracker"
-import BehaviorTracker from "../../components/BehaviorTracker/BehaviorTracker";
-
-
-
+// import BehaviorTracker from "../../components/BehaviorTracker/BehaviorTracker";
 
 class Teacher extends React.Component {
 
@@ -24,11 +21,10 @@ class Teacher extends React.Component {
       pillThree: "5",
       pillFour: "5",
       teachComnt: "",
-      MissingWorkOption: "No",
+      missingWorkOption: "No",
       studentdb: []
 
     }
-
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -42,12 +38,8 @@ class Teacher extends React.Component {
         this.setState({ studentdb: res.data });
         console.log(this.state.studentdb);
         console.log(this.state.studentdb[0]._id)
-
       })
   }
-
-
-
 
   newSelection(e) {
 
@@ -82,18 +74,12 @@ class Teacher extends React.Component {
 
         }
         return userSelection
-
       })
       return {
-
         users: updateSelection
-
       }
 
     })
-
-
-
 
     console.log('checked ' + id)
   }
@@ -106,7 +92,8 @@ class Teacher extends React.Component {
         pillar2: this.state.pillTwo,
         pillar3: this.state.pillThree,
         pillar4: this.state.pillFour,
-        comments: this.state.teachComnt
+        comments: this.state.teachComnt,
+        missingwork: this.state.missingWorkOption
       };
       API.studentEval(id, studentUpdateObj).then((update) => {
         console.log("update worked for student!");
@@ -114,40 +101,31 @@ class Teacher extends React.Component {
     })
   }
 
-
   render() {
 
     const userList = this.state.studentdb.map(user =>
       <UserCard key={user._id} user={user} handleChange={this.handleChange} />
     )
 
-
     return (
       <div className="teachBg">
         <div className="container mb-5">
-
           <div className="roster">
             <div className="card mt-5 trackerCardBodyBg">
               <div className="card-header bg-dark text-light text-center">
                 <h5>First Hour - Roster</h5>
               </div>
               <div className="card-body">
-
                 {userList}
-
-
               </div>
             </div>
 
-            {this.state.studentdb.map((user) => {
+            {/* {this.state.studentdb.map((user) => {
               if (user.selected) {
                 return <div>{user.name + " ----and the student ID is:----- "} {user._id}</div>
               }
-            })}
-
+            })} */}
           </div>
-
-
 
           <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
 
@@ -158,8 +136,6 @@ class Teacher extends React.Component {
       </div>
     )
   }
-
 }
-
 
 export default Teacher;
