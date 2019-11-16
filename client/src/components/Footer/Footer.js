@@ -5,7 +5,10 @@ function Footer() {
 
     return (
         <div>
-            <div className="card-footer bg-success text-muted">
+
+
+
+            <div className="card-footer fixed-bottom bg-success text-muted">
 
                 <div className="text-center bg-success mt-1">
 

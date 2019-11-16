@@ -16,19 +16,24 @@ class Teacher extends React.Component {
     this.state = {
       users: usersdb,
       selectedIDs: [],
+      selectedNames: [],
       pillOne: "5",
       pillTwo: "5",
       pillThree: "5",
       pillFour: "5",
       teachComnt: "",
-      missingWorkOption: "No",
-      studentdb: []
+      MissingWorkOption: "No",
+      studentdb: [],
+      teaFileUpload: [],
+      show: false
 
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleClickTabs = this.handleClickTabs.bind(this)
     this.newSelection = this.newSelection.bind(this)
+
 
   }
 
@@ -53,6 +58,14 @@ class Teacher extends React.Component {
 
   }
 
+  handleClickTabs() {
+    this.setState({
+      show: !this.state.show
+    })
+
+    // alert('handlick tabs')
+  }
+
   handleChange(id) {
 
     this.setState((prevState) => {
@@ -70,6 +83,7 @@ class Teacher extends React.Component {
             userSelection.selected = true;
             prevState.selectedIDs.push(id)
             console.log(prevState.selectedIDs)
+
           }
 
         }
@@ -99,6 +113,8 @@ class Teacher extends React.Component {
         console.log("update worked for student!");
       }).catch(err => console.log(err));
     })
+
+    alert('form submitted')
   }
 
   render() {
@@ -109,10 +125,11 @@ class Teacher extends React.Component {
 
     return (
       <div className="teachBg">
-        <div className="container mb-5">
+        <div className="container content mt-5">
+
           <div className="roster">
             <div className="card mt-5 trackerCardBodyBg">
-              <div className="card-header bg-dark text-light text-center">
+              <div className="card-header trackerHeader bg-dark text-light text-center">
                 <h5>First Hour - Roster</h5>
               </div>
               <div className="card-body">
@@ -120,18 +137,62 @@ class Teacher extends React.Component {
               </div>
             </div>
 
-            {/* {this.state.studentdb.map((user) => {
+            {this.state.studentdb.map((user) => {
               if (user.selected) {
-                return <div>{user.name + " ----and the student ID is:----- "} {user._id}</div>
+                console.log(user.name)
+
+                this.state.selectedNames.length = 0;
+
+                // this.state.selectedNames
+
+
+                
+                this.state.selectedNames.push(user.name + ", ")
+
+                // return
+
+
               }
-            })} */}
+            })}
           </div>
 
-          <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
+
+          {/* hide/show table */}
+
+
+          {
+
+            this.state.show ?
+
+              <div className="mb-4">
+                <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
+
+              </div>
+
+              : null
+
+          }
+
 
         </div>
 
-        <footer className="footer card-footer bg-success mt-5"><i className="fa fa-arrow-right fa-4x" onClick={this.handleClick}></i></footer>
+        <div className="container card mt-5">
+
+          <div className="card-body">
+
+
+            <p className=" text-center slogan">To teach is to touch a life forever!</p>
+
+          </div>
+        </div>
+
+
+        {/* <button className="btn btn-primary" onClick={()=>this.handleClickTabs()} >Go Next</button> */}
+
+        {/* <footer className="footer card-footer bg-success mt-5"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-5x" onClick={this.handleClick}></i></footer> */}
+
+        <div class="card-footer fixed-bottom  text-center bg-dark text-white border-success "> Give Points<i class="fa fa-pencil-square-o fa-3x" aria-hidden="true" onClick={() => this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-4x" onClick={this.handleClick}></i> Submit Tracker</div>
+
 
       </div>
     )
