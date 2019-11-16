@@ -10,9 +10,9 @@ function Tracker(props) {
         <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p>
         {/* <h5 className="card-header studentId"> <span></span></h5> */}
 
-        <div class="card-body">
-          <table class="table bg-white ">
-            <thead class="thead-dark bg-success text-center">
+        <div className="card-body">
+          <table className="table bg-white ">
+            <thead className="thead-dark bg-success text-center">
               <tr>
                 <th scope="col">Category</th>
                 <th scope="col">Score</th>
@@ -315,7 +315,7 @@ function Tracker(props) {
           {/* <label for="exampleFormControlFile1">Example file input</label> */}
           <input
             type="file"
-            class="form-control-file"
+            className="form-control-file"
             id="exampleFormControlFile1"
           />
         </div>
