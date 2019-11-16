@@ -147,7 +147,7 @@ class Teacher extends React.Component {
               <div className="card-header trackerHeader bg-dark text-light text-center">
                 <h5>First Hour - Roster</h5>
               </div>
-              <div className="card-body studentDisplayBoxes">
+              <div className="card-body">
 
                 {userList}
 
