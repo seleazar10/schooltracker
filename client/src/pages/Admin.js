@@ -97,7 +97,7 @@ class Admin extends Component {
                                     <FormBtn onClick={this.toggleDiv}>
                                         Create Teacher
                         </FormBtn>
-                                    <FormBtn>
+                                    <FormBtn >
                                         Modify Teacher
                         </FormBtn>
                                     <FormBtn>

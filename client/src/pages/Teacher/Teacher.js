@@ -19,6 +19,7 @@ class Teacher extends React.Component {
     this.state = {
       users: usersdb,
       selectedIDs: [],
+      selectedNames: [],
       pillOne: "5",
       pillTwo: "5",
       pillThree: "5",
@@ -26,6 +27,7 @@ class Teacher extends React.Component {
       teachComnt: "",
       MissingWorkOption: "No",
       studentdb: [],
+      teaFileUpload: [],
       show: false
 
     }
@@ -64,7 +66,7 @@ class Teacher extends React.Component {
 
   }
 
-  handleClickTabs(){
+  handleClickTabs() {
     this.setState({
       show: !this.state.show
     })
@@ -89,6 +91,7 @@ class Teacher extends React.Component {
             userSelection.selected = true;
             prevState.selectedIDs.push(id)
             console.log(prevState.selectedIDs)
+
           }
 
         }
@@ -141,10 +144,10 @@ class Teacher extends React.Component {
 
           <div className="roster">
             <div className="card mt-5 trackerCardBodyBg">
-              <div className="card-header bg-dark text-light text-center">
+              <div className="card-header trackerHeader bg-dark text-light text-center">
                 <h5>First Hour - Roster</h5>
               </div>
-              <div className="card-body">
+              <div className="card-body studentDisplayBoxes">
 
                 {userList}
 
@@ -154,7 +157,19 @@ class Teacher extends React.Component {
 
             {this.state.studentdb.map((user) => {
               if (user.selected) {
-                return <div>{user.name + " ----and the student ID is:----- "} {user._id}</div>
+                console.log(user.name)
+
+                // this.state.selectedNames.length = 0;
+
+                // this.state.selectedNames
+
+
+
+                this.state.selectedNames.push(user.name + ", ")
+
+                return
+
+
               }
             })}
 
@@ -164,27 +179,38 @@ class Teacher extends React.Component {
           {/* hide/show table */}
 
 
-              {
+          {
 
-              this.state.show?
+            this.state.show ?
 
               <div className="mb-4">
-                          <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
+                <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
 
-                </div>
+              </div>
 
-                :null
-              
-              }
+              : null
+
+          }
 
 
         </div>
+
+        <div className="container card mt-5">
+
+          <div className="card-body">
+
+
+            <p className=" text-center slogan">To teach is to touch a life forever!</p>
+
+          </div>
+        </div>
+
 
         {/* <button className="btn btn-primary" onClick={()=>this.handleClickTabs()} >Go Next</button> */}
 
         {/* <footer className="footer card-footer bg-success mt-5"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-5x" onClick={this.handleClick}></i></footer> */}
 
-        <div class="card-footer fixed-bottom  text-center bg-dark text-white border-success "> <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-4x" onClick={this.handleClick}></i></div>
+        <div class="card-footer fixed-bottom  text-center bg-dark text-white border-success "> Give Points<i class="fa fa-pencil-square-o fa-3x" aria-hidden="true" onClick={() => this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-4x" onClick={this.handleClick}></i> Submit Tracker</div>
 
 
       </div>

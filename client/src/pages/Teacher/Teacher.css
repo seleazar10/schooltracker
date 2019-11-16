@@ -48,4 +48,24 @@
     .fa{
       margin: 0 25px;
     }
+
+    .studentDisplayBoxes{
+
+      background-image:  linear-gradient(rgba(0, 0, 0, 0.418), rgba(0, 0, 0, 0.603)), url("https://i.imgur.com/OXkOoq4.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+    }
+
+    .trackerHeader{
+      font-family: 'Permanent Marker', cursive;
+      font-size: 190px;
+    }
+
+    .slogan{
+      font-family: 'Dancing Script', cursive;
+      font-size: 30px;
+
+    }
     

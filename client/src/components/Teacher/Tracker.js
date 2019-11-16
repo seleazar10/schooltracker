@@ -8,19 +8,22 @@ import TeaFileUpload from "../TeaFileUpload/TeaFIleUpload"
 function Tracker(props) {
 
     return (
-        <div className="container mt-5">
-            <div className="card teaBeLogTab col-12 mt-5">
+        <div className="mt-5 ">
+            <div className="card teaBeLogTab studentDisplayBoxes col-12 mt-5">
 
-                <div className="card-header bg-white text-dark text-center">
+                <div className="card-header bg-none text-white trackerHeader text-center">
                     <h4>Behavior Tracker</h4>
                 </div>
-                <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p>
-                {/* <h5 className="card-header studentId"> <span></span></h5> */}
+                <p>{props.values.selectedNames}</p>
 
 
 
 
-                <div className="card-body">
+
+
+                <div className="card-body ">
+
+                    
 
 
                     <table className="table bg-white scoreTable">
@@ -31,30 +34,46 @@ function Tracker(props) {
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="studentDisplayBoxes">
 
 
-                            {radiooptions.map(option =>
-                                <div>
+                            <div className="card">
 
-                                    <tr>
 
-                                        <th scope="row" className="optionsNameClm">
+                                {radiooptions.map(option =>
+                                    <div>
+
+
+                                        <tr>
+                                            <th scope="row" className="optionsNameClm">
+                                                {option.question}
+                                            </th>
+
+                                        </tr>
+
+                                        <tr>
+
+
+
+                                            {/* <th scope="row" className="optionsNameClm">
                                             {option.question}
-                                        </th>
+                                        </th> */}
 
 
 
-                                        <td scope="row" className="optionsClm ">
-                                            <form className="text-center form-check-inline">
-                                                <BehaviorTracker values={props.values} data={option} newSelection={(e) => props.newSelection(e)} />
-                                            </form>
-                                        </td>
+
+                                            <td scope="row" className="optionsClm ">
+                                                <form className="text-center form-check-inline">
+                                                    <BehaviorTracker values={props.values} data={option} newSelection={(e) => props.newSelection(e)} />
+                                                </form>
+                                            </td>
 
 
-                                    </tr>
-                                </div>
-                            )}
+                                        </tr>
+                                    </div>
+                                )}
+
+                            </div>
 
 
 
@@ -97,20 +116,7 @@ function Tracker(props) {
 
 
 
-            <div className="card mt-5">
-
-                <div className="card-body">
-
-
-                    <p className="mb-5 text-center slogan">To teach is to touch a life forever!</p>
-
-
-
-
-
-                </div>
-            </div>
-
+       
 
 
 
