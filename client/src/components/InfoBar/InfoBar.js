@@ -1,7 +1,7 @@
 import React from 'react';
 
 //import onlineIcon from '';
-import closeIcon from '../../Icons/closeIcon.png';
+import closeIcon from '../../icons/closeIcon.png';
 
 import './InfoBar.css';
 
