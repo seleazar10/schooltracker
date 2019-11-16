@@ -3,7 +3,7 @@ const http = require('http');
 const express = require("express");
 const routes = require("./routes/apiRoutes");
 const mongoose = require("mongoose");
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./server/users');
 const socketio = require('socket.io');
 const cors = require('cors');
 
@@ -14,10 +14,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 //Require all models
-const db = require("../models");
+const db = require("./models");
 
 //Established a port to listen on
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3001;
 
 //Middleware
 app.use(express.urlencoded({ extended: true }));
