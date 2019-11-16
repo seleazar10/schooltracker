@@ -22,7 +22,7 @@ class Teacher extends React.Component {
       pillThree: "5",
       pillFour: "5",
       teachComnt: "",
-      MissingWorkOption: "No",
+      missingWorkOption: "No",
       studentdb: [],
       teaFileUpload: [],
       show: false
