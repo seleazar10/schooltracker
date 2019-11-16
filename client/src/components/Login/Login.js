@@ -23,25 +23,6 @@ class Login extends Component {
     // this.handleChange = this.handleChange.bind(this);
   }
 
-  // React Life Cycle
-  componentDidMount() {
-    this.userData = JSON.parse(localStorage.getItem("user"));
-    if (localStorage.getItem("user")) {
-      this.setState({
-        email: this.userData.email,
-        password: this.userData.password
-      });
-    } else {
-      this.setState({
-        email: "",
-        password: ""
-      });
-    }
-  }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem("user", JSON.stringify(nextState));
-  }
-
   // componentDidMount() {
   //   const rememberMe = localStorage.getItem("rememberMe") === "true";
   //   const user = rememberMe ? localStorage.getItem("user") : "";
@@ -52,8 +33,8 @@ class Login extends Component {
     const input = event.target;
     const value = input.type === "checkbox" ? input.checked : input.value;
     this.setState({
-      [event.target.name]: event.target.value
-      // [event.target.name]: value
+      // [event.target.name]: event.target.value
+      [event.target.name]: value
     });
   };
   handleSubmit = userType => {
@@ -73,6 +54,7 @@ class Login extends Component {
         { withCredentials: true }
       )
       .then(response => {
+        localStorage.setItem("authToken", response.data.token);
         this.props.updateUser(response.data);
         if (userType === "teacher") {
           this.props.history.push("/teacher/profile");

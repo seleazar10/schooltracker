@@ -2,6 +2,9 @@ const express = require("express");
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+var jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 // const router = express.Router();
 module.exports = app => {
   app.get("/", function(req, res) {
@@ -111,7 +114,11 @@ module.exports = app => {
           .compare(req.body.password, user.password)
           .then(function(success) {
             if (success) {
-              res.json(user);
+              var token = jwt.sign(
+                { email: user.email, userType: req.body.userType },
+                process.env.TOKEN_KEY
+              );
+              res.json({ ...user._doc, token });
             } else {
               {
                 res
@@ -127,6 +134,42 @@ module.exports = app => {
             res.json({ status: "Error 😢", desc: err });
           });
       });
+  });
+
+  // >>>>>>>>>>>>>>>>>>>>>>DECODE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  // app.post("/api/decode", function(req, res) {
+  //   console.log("Decode hit!");
+  //   jwt.verify(token, "shhhhh", function(err, decoded) {
+  //     console.log(decoded.foo); // bar
+  //   });
+  // });
+  app.post("/api/authtoken", (req, res) => {
+    //verify the JWT token generated for the user
+    jwt.verify(req.body.token, process.env.TOKEN_KEY, (err, authorizedData) => {
+      // console.log(req.body.token);
+      if (err) {
+        //If error send Forbidden (403)
+        console.log("ERROR: Could not connect to the protected route");
+        res.sendStatus(403);
+      } else {
+        console.log(authorizedData);
+        let dbName =
+          authorizedData.userType == "teacher" ? "Teacher" : "Student";
+        db[dbName]
+          .findOne({
+            email: authorizedData.email
+          })
+          .then(function(user) {
+            res.json(user);
+          })
+          .catch(function(err) {
+            console.log("🤬🤯");
+            res.json({ status: "Error 😢", desc: err });
+          });
+        console.log("SUCCESS: Connected to protected route");
+      }
+    });
   });
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Update Teacher object api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

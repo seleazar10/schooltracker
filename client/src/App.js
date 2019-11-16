@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import "./node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,11 +16,23 @@ import PrivateRoute from "./components/PrivateRoute";
 // import './App.css';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({ loggedIn: false });
 
   const handleLogin = (user = {}) => {
-    setCurrentUser(user);
+    setCurrentUser({ ...user, loggedIn: true });
   };
+
+  const authToken = localStorage.getItem("authToken");
+  if (authToken && !currentUser.loggedIn) {
+    axios
+      .post("/api/authtoken", {
+        token: authToken
+      })
+      .then(response => {
+        console.log(response);
+        handleLogin(response.data);
+      });
+  }
 
   console.log(currentUser);
   return (
@@ -35,7 +47,6 @@ function App() {
             render={() => <Login updateUser={handleLogin} />}
           />
           <Route exact path="/parent" component={Parent} />
-          <Route exact path="/teacher" component={Teacher} />
 
           {/* TEACHER PROFILE/EDIT PAGE */}
           <PrivateRoute path="/teacher/profile" user={currentUser}>

@@ -51,7 +51,7 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to="/teacher"
+              to="/teacher/profile"
               className={
                 window.location.pathname === "/teacher"
                   ? "nav-link active"
