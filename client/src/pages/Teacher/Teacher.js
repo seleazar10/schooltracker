@@ -33,8 +33,9 @@ class Teacher extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleClickTabs = this.handleClickTabs.bind(this)
     this.newSelection = this.newSelection.bind(this)
-    
+
 
   }
 
@@ -61,6 +62,14 @@ class Teacher extends React.Component {
 
     console.log(this.state)
 
+  }
+
+  handleClickTabs(){
+    this.setState({
+      show: !this.state.show
+    })
+
+    // alert('handlick tabs')
   }
 
   handleChange(id) {
@@ -114,6 +123,8 @@ class Teacher extends React.Component {
         console.log("update worked for student!");
       }).catch(err => console.log(err));
     })
+
+    alert('form submitted')
   }
 
 
@@ -130,7 +141,7 @@ class Teacher extends React.Component {
 
           <div className="roster">
             <div className="card mt-5 trackerCardBodyBg">
-              <div className="card-header bg-dark text-light text-center">
+              <div className="card-header bg-success text-light text-center">
                 <h5>First Hour - Roster</h5>
               </div>
               <div className="card-body">
@@ -150,12 +161,28 @@ class Teacher extends React.Component {
           </div>
 
 
+          {/* hide table */}
 
-          <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
+
+              {
+
+              this.state.show?
+
+              <div>
+                          <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
+
+                </div>
+
+                :null
+              
+              }
+
 
         </div>
 
-        <footer className="footer card-footer bg-success mt-5"><i className="fa fa-arrow-right fa-4x" onClick={this.handleClick}></i></footer>
+        {/* <button className="btn btn-primary" onClick={()=>this.handleClickTabs()} >Go Next</button> */}
+
+        <footer className="footer card-footer bg-success mt-5"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-5x" onClick={this.handleClick}></i></footer>
 
       </div>
     )
