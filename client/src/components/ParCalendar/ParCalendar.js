@@ -11,7 +11,7 @@ function ParCalendar() {
                 <h5 className="card-header bg-dark text-light text-center">Calendar</h5>
                 <div className="card-body ">
 
-                    <img src="https://i.imgur.com/PkFN3ie.jpg" className="parCalend" alt="schoolCalendSamp"/>
+                    <img src="https://i.imgur.com/PkFN3ie.jpg" className="parCalend" alt="schoolCalendSamp" />
 
 
 
@@ -35,4 +35,4 @@ function ParCalendar() {
     )
 }
 
-export  default ParCalendar;
+export default ParCalendar;

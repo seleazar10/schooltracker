@@ -216,6 +216,9 @@ module.exports = app => {
           if (req.body.name) {
             foundObject.name = req.body.name;
           }
+          if (req.body.missingwork) {
+            foundObject.missingwork = req.body.missingwork;
+          }
           if (req.body.pillar1) {
             foundObject.pillar1 = req.body.pillar1;
           }

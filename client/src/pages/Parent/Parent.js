@@ -10,8 +10,8 @@ import OpenWeather from "../../components/OpenWeather"
 
 
 
-import AdminAncmt from "../../components/AdminAncmt/AdminAncmt";
-import AdminSclClosure from "../../components/AdminSclClosure/AdminSclClosure";
+// import AdminAncmt from "../../components/AdminAncmt/AdminAncmt";
+// import AdminSclClosure from "../../components/AdminSclClosure/AdminSclClosure";
 
 
 

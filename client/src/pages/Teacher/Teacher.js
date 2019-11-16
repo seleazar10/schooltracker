@@ -7,10 +7,7 @@ import usersdb from "../../components/Teacher/usersdb";
 import UserCard from "../../components/Teacher/UserCard";
 
 import Tracker from "../../components/Teacher/Tracker"
-import BehaviorTracker from "../../components/BehaviorTracker/BehaviorTracker";
-
-
-
+// import BehaviorTracker from "../../components/BehaviorTracker/BehaviorTracker";
 
 class Teacher extends React.Component {
 
@@ -32,7 +29,6 @@ class Teacher extends React.Component {
 
     }
 
-
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleClickTabs = this.handleClickTabs.bind(this)
@@ -47,12 +43,8 @@ class Teacher extends React.Component {
         this.setState({ studentdb: res.data });
         console.log(this.state.studentdb);
         console.log(this.state.studentdb[0]._id)
-
       })
   }
-
-
-
 
   newSelection(e) {
 
@@ -96,18 +88,12 @@ class Teacher extends React.Component {
 
         }
         return userSelection
-
       })
       return {
-
         users: updateSelection
-
       }
 
     })
-
-
-
 
     console.log('checked ' + id)
   }
@@ -120,7 +106,8 @@ class Teacher extends React.Component {
         pillar2: this.state.pillTwo,
         pillar3: this.state.pillThree,
         pillar4: this.state.pillFour,
-        comments: this.state.teachComnt
+        comments: this.state.teachComnt,
+        missingwork: this.state.missingWorkOption
       };
       API.studentEval(id, studentUpdateObj).then((update) => {
         console.log("update worked for student!");
@@ -130,13 +117,11 @@ class Teacher extends React.Component {
     alert('form submitted')
   }
 
-
   render() {
 
     const userList = this.state.studentdb.map(user =>
       <UserCard key={user._id} user={user} handleChange={this.handleChange} />
     )
-
 
     return (
       <div className="teachBg">
@@ -148,14 +133,11 @@ class Teacher extends React.Component {
                 <h5>First Hour - Roster</h5>
               </div>
               <div className="card-body">
-
                 {userList}
-
-
               </div>
             </div>
 
-            {this.state.studentdb.map((user) => {
+            {/* {this.state.studentdb.map((user) => {
               if (user.selected) {
                 console.log(user.name)
 
@@ -171,8 +153,7 @@ class Teacher extends React.Component {
 
 
               }
-            })}
-
+            })} */}
           </div>
 
 
@@ -216,8 +197,6 @@ class Teacher extends React.Component {
       </div>
     )
   }
-
 }
-
 
 export default Teacher;

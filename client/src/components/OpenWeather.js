@@ -13,7 +13,7 @@ class OpenWeather extends React.Component {
       return (
         <div>
          
-         {/* <ReactWeather forecast="today" apikey="fb0ce6d825db30974bf096625bf170a2" type="auto" /> */}
+         {/* <ReactWeather forecast="today" apikey="" type="auto" /> */}
 
         </div>
       );
