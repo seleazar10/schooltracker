@@ -137,23 +137,23 @@ class Teacher extends React.Component {
               </div>
             </div>
 
-            {/* {this.state.studentdb.map((user) => {
+            {this.state.studentdb.map((user) => {
               if (user.selected) {
                 console.log(user.name)
 
-                // this.state.selectedNames.length = 0;
+                this.state.selectedNames.length = 0;
 
                 // this.state.selectedNames
 
 
-
+                
                 this.state.selectedNames.push(user.name + ", ")
 
-                return
+                // return
 
 
               }
-            })} */}
+            })}
           </div>
 
 

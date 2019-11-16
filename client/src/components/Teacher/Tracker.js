@@ -14,7 +14,7 @@ function Tracker(props) {
                 <div className="card-header bg-none text-white trackerHeader text-center">
                     <h4>Behavior Tracker</h4>
                 </div>
-                <p>{props.values.selectedNames}</p>
+                <p className="text-white">{props.values.selectedNames}</p>
 
 
 
