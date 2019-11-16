@@ -11,20 +11,20 @@ function Tracker(props) {
         <div className="container mt-5">
             <div className="card teaBeLogTab col-12 mt-5">
 
-            <div className="card-header bg-white text-dark text-center">
-                <h4>Behavior Tracker</h4>
-              </div>
+                <div className="card-header bg-white text-dark text-center">
+                    <h4>Behavior Tracker</h4>
+                </div>
                 <p>~~~~DISPLAY NAMES HERE~~~{props.name}</p>
                 {/* <h5 className="card-header studentId"> <span></span></h5> */}
 
-                
+
 
 
                 <div className="card-body">
 
 
                     <table className="table bg-white scoreTable">
-                        <thead className="thead-dark bg-success text-center">
+                        <thead className="thead-dark bg-dark text-center">
                             <tr>
                                 <th scope="col">Category and Score</th>
                                 {/* <th scope="col">Score</th> */}
@@ -94,6 +94,23 @@ function Tracker(props) {
 
                 </div>
             </div>
+
+
+
+            <div className="card mt-5">
+
+                <div className="card-body">
+
+
+                    <p className="mb-5 text-center slogan">To teach is to touch a life forever!</p>
+
+
+
+
+
+                </div>
+            </div>
+
 
 
 

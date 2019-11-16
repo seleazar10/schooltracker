@@ -137,11 +137,11 @@ class Teacher extends React.Component {
 
     return (
       <div className="teachBg">
-        <div className="container mb-5">
+        <div className="container content mb-5">
 
           <div className="roster">
             <div className="card mt-5 trackerCardBodyBg">
-              <div className="card-header bg-success text-light text-center">
+              <div className="card-header bg-dark text-light text-center">
                 <h5>First Hour - Roster</h5>
               </div>
               <div className="card-body">
@@ -161,14 +161,14 @@ class Teacher extends React.Component {
           </div>
 
 
-          {/* hide table */}
+          {/* hide/show table */}
 
 
               {
 
               this.state.show?
 
-              <div>
+              <div className="mb-4">
                           <Tracker values={this.state} newSelection={(e) => this.newSelection(e)} />
 
                 </div>
@@ -182,7 +182,10 @@ class Teacher extends React.Component {
 
         {/* <button className="btn btn-primary" onClick={()=>this.handleClickTabs()} >Go Next</button> */}
 
-        <footer className="footer card-footer bg-success mt-5"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-5x" onClick={this.handleClick}></i></footer>
+        {/* <footer className="footer card-footer bg-success mt-5"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-5x" onClick={this.handleClick}></i></footer> */}
+
+        <div class="card-footer fixed-bottom  text-center bg-dark text-white border-success "> <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true" onClick={()=>this.handleClickTabs()}></i><i className="fa fa-check-square-o fa-4x" onClick={this.handleClick}></i></div>
+
 
       </div>
     )
