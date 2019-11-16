@@ -141,16 +141,60 @@ class Teacher extends React.Component {
               if (user.selected) {
                 console.log(user.name)
 
-                this.state.selectedNames.length = 0;
+              
 
                 // this.state.selectedNames
 
+                if(!this.state.selectedNames.includes(user.name)){
+
+                  
+
+                  // this.setState((prevState) => {selectedNames: this.state.selectedNames.push(user.name + ", ")})
+
+                }
 
                 
-                this.state.selectedNames.push(user.name + ", ")
+              
+
+                
+
+
 
                 // return
 
+
+              }else{
+
+                let nameSelected = this.state.selectedNames.indexOf(user.name)
+
+                if( nameSelected >-1){
+
+
+                  this.setState( {selectedNames: this.state.selectedNames.splice(nameSelected, 1)})
+                
+
+                  
+                  // return 
+
+
+
+                  
+                }else{
+                  
+                  
+                }
+
+                // let indexSelected = prevState.selectedIDs.indexOf(id)
+
+                // if (indexSelected > -1) {
+                //   userSelection.selected = false;
+                //   prevState.selectedIDs.splice(indexSelected, 1)
+                // } else {
+                //   userSelection.selected = true;
+                //   prevState.selectedIDs.push(id)
+                //   console.log(prevState.selectedIDs)
+      
+                // }
 
               }
             })}
