@@ -77,10 +77,16 @@ class Admin extends Component {
     render() {
         return (
             <div>
+
+                <div className="container">
+
                 <Jumbotron backgroundImage="../../images/homepageExample.jpg">
-                    <h1>This is the Admin page</h1>
-                    <h2>Welcome with a login</h2>
+                    <h1 className="text-center m-5">DarStar!</h1>
+                    {/* <h2>Welcome with a login</h2> */}
                 </Jumbotron>
+
+                
+               
                 <Container >
                     <Row>
 
@@ -134,6 +140,8 @@ class Admin extends Component {
                     </CardAnnModify>
 
                 </Container>
+
+                </div>
             </div>
 
 

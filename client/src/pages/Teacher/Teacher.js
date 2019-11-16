@@ -137,7 +137,7 @@ class Teacher extends React.Component {
 
     return (
       <div className="teachBg">
-        <div className="container content mb-5">
+        <div className="container content mt-5">
 
           <div className="roster">
             <div className="card mt-5 trackerCardBodyBg">
