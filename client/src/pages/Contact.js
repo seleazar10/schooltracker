@@ -1,5 +1,5 @@
 // display the home page that should contain the authentication
-//import React from "react";
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import '../components/Join/Join.css';
@@ -13,12 +13,13 @@ function Contact() {
     return (
         <div>
             <Jumbotron backgroundImage="../../images/chatimg.jpg">
-                <h1 className="chatText">This is the Contact page</h1>
-                <h2 className="chatTextTwo">Welcome with a login</h2>
+                <h1 className="chatText">Parents-Teacher Online Conference</h1>
+                <h2 className="chatTextTwo">Please login below</h2>
             </Jumbotron>
 
             <div className="joinOuterContainer">
                 <div className="joinInnerContainer">
+
                     <h1 className="heading">Log In</h1>
                     <div>
                         <input placeholder="Name..." className="joinInput" type="text" onChange={(event) => setName(event.target.value)} />
