@@ -14,17 +14,17 @@ class Box extends React.Component {
       teacherPassword: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeTeacherName = this.handleChangeTeacherName.bind(this);
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangeUserEmail = this.handleChangeUserEmail.bind(this);
     this.handleChangeclassroomSub = this.handleChangeclassroomSub.bind(this);
     this.handleChangeaboutTeacher = this.handleChangeaboutTeacher.bind(this);
     this.handleChangeteacherPassword = this.handleChangeteacherPassword.bind(this);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitNewTeacher = this.handleSubmitNewTeacher.bind(this);
   }
 
-  handleChange(event) {
+  handleChangeTeacherName(event) {
     this.setState({ teacherName: event.target.value });
   }
 
@@ -48,24 +48,33 @@ class Box extends React.Component {
     this.setState({ aboutTeacher: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmitNewTeacher(event) {
+    event.preventDefault();
     console.log('A name was submitted: ' + this.state.teacherName);
     console.log("A username was submitted: " + this.state.userName);
     console.log("An email was submitted: " + this.state.userEmail);
     console.log("A teaching subject was submitted: " + this.state.classroomSub);
     console.log("An about teacher was submitted: " + this.state.aboutTeacher);
     console.log("A password was submitted: " + this.state.teacherPassword);
-    event.preventDefault();
+    this.setState({
+      teacherName: '',
+      userName: '',
+      userEmail: '',
+      classroomSub: '',
+      aboutTeacher: '',
+      teacherPassword: ''
+    });
+    alert("Submitted");
   }
 
   render() {
     return (
       <Container className="bg-light mb-3 p-2">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmitNewTeacher}>
 
           <Form.Group controlId="newTeacherName">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter Name" value={this.state.teacherName} onChange={this.handleChange} />
+            <Form.Control type="text" placeholder="Enter Name" value={this.state.teacherName} onChange={this.handleChangeTeacherName} />
           </Form.Group>
 
           <Form.Group controlId="newUserName">
@@ -93,7 +102,7 @@ class Box extends React.Component {
             <Form.Control type="password" placeholder="Enter Password" value={this.state.teacherPassword} onChange={this.handleChangeteacherPassword} />
           </Form.Group>
 
-          <Button variant="primary" type="submit" value="Submit">
+          <Button variant="primary"  type="submit" value="Submit">
             Submit
           </Button>
 
