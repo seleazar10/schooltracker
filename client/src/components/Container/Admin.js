@@ -1,4 +1,6 @@
 import React from "react";
+
+import API from "../../utils/API";
 import { Button, Form, Container } from 'react-bootstrap';
 
 
@@ -14,6 +16,7 @@ class Box extends React.Component {
       teacherPassword: ''
     };
 
+    // Changes the state for teacher form to update while typing
     this.handleChangeTeacherName = this.handleChangeTeacherName.bind(this);
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangeUserEmail = this.handleChangeUserEmail.bind(this);
@@ -24,6 +27,7 @@ class Box extends React.Component {
     this.handleSubmitNewTeacher = this.handleSubmitNewTeacher.bind(this);
   }
 
+  // Grabs the value of the form and sets the state
   handleChangeTeacherName(event) {
     this.setState({ teacherName: event.target.value });
   }
@@ -37,7 +41,7 @@ class Box extends React.Component {
   }
 
   handleChangeUserEmail(event) {
-    this.setState({ userEmail: event.target.value});
+    this.setState({ userEmail: event.target.value });
   }
 
   handleChangeclassroomSub(event) {
@@ -48,6 +52,7 @@ class Box extends React.Component {
     this.setState({ aboutTeacher: event.target.value });
   }
 
+  // When the submit button is clicked it will post a new teacher to DB, set teacher related state to blank and send a alert
   handleSubmitNewTeacher(event) {
     event.preventDefault();
     console.log('A name was submitted: ' + this.state.teacherName);
@@ -56,6 +61,26 @@ class Box extends React.Component {
     console.log("A teaching subject was submitted: " + this.state.classroomSub);
     console.log("An about teacher was submitted: " + this.state.aboutTeacher);
     console.log("A password was submitted: " + this.state.teacherPassword);
+
+    // Creates a object that sets database names to the state names
+    const newTeacherObj = {
+      name: this.state.teacherName,
+      username: this.state.userName,
+      email: this.state.userEmail,
+      classroomSubject: this.state.classroomSub,
+      aboutMe: this.state.aboutTeacher,
+      password: this.state.teacherPassword
+    };
+
+    // Makes an axios post that contains the newTeacherObj object
+    API.saveNewTeacher(newTeacherObj)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     this.setState({
       teacherName: '',
       userName: '',
@@ -64,7 +89,9 @@ class Box extends React.Component {
       aboutTeacher: '',
       teacherPassword: ''
     });
-    alert("Submitted");
+
+    // Notify the user that a new teacher has been submitted
+    alert("New teacher has been submitted!");
   }
 
   render() {
@@ -102,7 +129,7 @@ class Box extends React.Component {
             <Form.Control type="password" placeholder="Enter Password" value={this.state.teacherPassword} onChange={this.handleChangeteacherPassword} />
           </Form.Group>
 
-          <Button variant="primary"  type="submit" value="Submit">
+          <Button variant="primary" type="submit" value="Submit">
             Submit
           </Button>
 
