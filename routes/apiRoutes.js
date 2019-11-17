@@ -405,6 +405,8 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
+  // ROUTE  NEEDED TO ADD STUDENT OBJECT ID TO TEACHER COLLECTION
+
   app.post("/api/teacher/studentadd/:id", (req, res) => {
     console.log("Request:", req.body);
     console.log("Id:", req.params.id);
