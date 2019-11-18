@@ -1,6 +1,7 @@
 // index.js
 import React from "react";
 
+import { Button, Container, Card } from 'react-bootstrap';
 import "./style.css"
 
 
@@ -28,6 +29,17 @@ export function CardAnnModify(props) {
   </div>;
 }
 
+export function CardStuMod(props) {
+  return <Card data={props.student._id}>
+    <Card.Body>{props.student.name}</Card.Body>
+  </Card>
+}
+
+export function CardTeaMod(props) {
+  return <Card data={props.teacher._id}>
+    <Card.Body>{props.teacher.name}</Card.Body>
+  </Card>
+}
 
 
 
