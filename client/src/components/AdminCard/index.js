@@ -1,7 +1,7 @@
 // index.js
 import React from "react";
 
-import { Button, Container, Card } from 'react-bootstrap';
+import { Button, Container, Card, Form } from 'react-bootstrap';
 import "./style.css"
 
 
@@ -30,15 +30,23 @@ export function CardAnnModify(props) {
 }
 
 export function CardStuMod(props) {
-  return <Card data={props.student._id}>
-    <Card.Body>{props.student.name}</Card.Body>
-  </Card>
+  return <Form data={props.student._id}>
+    <Form.Check 
+    type="switch"
+    id="stuMod"
+    label={props.student.name}
+    />
+  </Form>
 }
 
 export function CardTeaMod(props) {
-  return <Card data={props.teacher._id}>
-    <Card.Body>{props.teacher.name}</Card.Body>
-  </Card>
+  return <Form data={props.teacher._id}>
+    <Form.Check 
+    type="switch"
+    id="stuMod"
+    label={props.teacher.name}
+    />
+  </Form>
 }
 
 
