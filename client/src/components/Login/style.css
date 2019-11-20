@@ -1,11 +1,16 @@
 body {
-  background: #4ebbab;
+  /* background: #4ebbab; */
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   /* background: url("http://cdn.wallpapersafari.com/13/6/Mpsg2b.jpg"); */
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.logcontainer{
+   background: #4ebbab;
+
 }
 
 .login-box h1 {
@@ -25,7 +30,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: black;
 }
 
 .textbox {
@@ -40,7 +45,7 @@ body {
   border: none;
   outline: none;
   background: none;
-  color: white;
+  color: black;
   font-size: 18px;
   width: 80%;
   float: left;

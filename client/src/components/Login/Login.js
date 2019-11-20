@@ -76,10 +76,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <div className="container">
+      <div className="logcontainer">
+        <div className="container ">
           <div className="login-box">
-            <h1>Login</h1>
+            <h1 className="text-center">Login</h1>
             <div className="textbox">
               <input
                 type="email"
