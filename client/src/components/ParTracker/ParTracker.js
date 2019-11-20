@@ -21,18 +21,19 @@ class ParTracker extends React.Component {
 
     componentDidMount() {
         axios.get("/api/student/all/")
-          .then(res => {
-            this.setState({ 
-            stuName: res.data[0].name,
-            pillOne: res.data[0].pillar1,
-            pillTwo: res.data[0].pillar2,
-            pillThree: res.data[0].pillar3,
-            pillFour: res.data[0].pillar4,
-            missingWorkOption: res.data[0].missingwork,
-            teachComnt: res.data[0].comments});
-            console.log(res.data[0]);
-          })
-      }
+            .then(res => {
+                this.setState({
+                    stuName: res.data[0].name,
+                    pillOne: res.data[0].pillar1,
+                    pillTwo: res.data[0].pillar2,
+                    pillThree: res.data[0].pillar3,
+                    pillFour: res.data[0].pillar4,
+                    missingWorkOption: res.data[0].missingwork,
+                    teachComnt: res.data[0].comments
+                });
+                console.log(res.data[0]);
+            })
+    }
 
 
     render() {
@@ -55,11 +56,21 @@ class ParTracker extends React.Component {
 
                             <div className="col-lg-6 col-sm-12 text-center">
 
-                                <button type="button" className="btn btn-danger pr-3 pl-3 m-2 colDesBtn disabled">1</button>
+                                <button type="button" className="btn btn-danger btn-sm pr-3 pl-3 m-2 colDesBtn disabled">1</button>
                                 <button type="button" className="btn btn-warning pr-3 pl-3 m-2 colDesBtn orang disabled">2</button>
                                 <button type="button" className="btn btn-warning pr-3 pl-3 m-2 colDesBtn disabled">3</button>
                                 <button type="button" className="btn btn-success pr-3 pl-3 m-2 colDesBtn disabled">4</button>
                                 <button type="button" className="btn btn-primary pr-3 pl-3 m-2 colDesBtn disabled">5</button>
+                            </div>
+
+
+                            <div>
+                                <button type="button" class="btn btn-primary">Primary</button>
+                                <button type="button" class="btn btn-secondary">Secondary</button>
+                                <button type="button" class="btn btn-success">Success</button>
+                                <button type="button" class="btn btn-danger">Danger</button>
+                                <button type="button" class="btn btn-warning">Warning</button>
+                                <button type="button" class="btn btn-info">Info</button>
                             </div>
 
                             <div className="col-lg-6 col-sm-12 text-center">

@@ -69,7 +69,7 @@ function Tracker(props) {
                       </td>
                     </tr>
                   </div>
-                ))}
+                )}
               </div>
             </tbody>
           </table>
