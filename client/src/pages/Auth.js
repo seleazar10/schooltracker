@@ -1,5 +1,5 @@
 // display the home page that should contain the authentication
-import React from "react";
+// import React from "react";
 
 // import Jumbotron from "../components/Jumbotron";
 
@@ -58,4 +58,4 @@ import React from "react";
 //   );
 // }
 
-export default Auth;
+// export default Auth;
