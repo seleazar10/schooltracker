@@ -16,7 +16,7 @@ class Box2 extends React.Component {
         };
 
         this.handleChangeSelectedStudent = this.handleChangeSelectedStudent.bind(this);
-
+        this.handleSubmitModTeacher = this.handleSubmitModTeacher.bind(this);
     }
 
     componentDidMount() {
@@ -39,12 +39,13 @@ class Box2 extends React.Component {
 
     handleSubmitModTeacher(event) {
         event.preventDefault();
+        console.log(event)
 
     }
 
     render() {
         const studentList = this.state.students.map(student => (
-            <CardStuMod value={this.state.selectedStudent} key={student._id} student={student} onChange={this.handleChangeSelectedStudent} />
+            <CardStuMod value={this.state.selectedStudent} key={student._id} student={student} />
         ))
 
         const teacherList = this.state.teachers.map(teacher => (
@@ -59,7 +60,7 @@ class Box2 extends React.Component {
                 </Container>
                 <Container className="bg-light p-3">
                     <h4>Choose one teacher:</h4>
-                    <div>{teacherList}</div>
+                    <div onChange={this.handleChangeSelectedStudent}>{teacherList}</div>
                 </Container>
 
                 <Button variant="primary" type="submit" value="Submit">

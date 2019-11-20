@@ -32,8 +32,8 @@ export function CardAnnModify(props) {
 export function CardStuMod(props) {
   return <Form>
     <Form.Check
-      type="switch"
-      id={props.student._id}
+      type="checkbox"
+      value={props.student._id}
       label={props.student.name}
     />
   </Form>
@@ -43,7 +43,7 @@ export function CardTeaMod(props) {
   return <Form>
     <Form.Check
       type="switch"
-      id={props.teacher._id}
+      value={props.teacher._id}
       label={props.teacher.name}
     />
   </Form>
