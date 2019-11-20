@@ -8,12 +8,12 @@ import "./style.css";
 function Navbar() {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/login">
         Home
       </Link>
       <div>
         <ul className="navbar-nav">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               to="/auth"
               className={
@@ -24,7 +24,7 @@ function Navbar() {
             >
               Authenticate
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link
               to="/login"
