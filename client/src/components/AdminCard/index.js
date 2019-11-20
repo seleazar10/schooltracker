@@ -30,21 +30,21 @@ export function CardAnnModify(props) {
 }
 
 export function CardStuMod(props) {
-  return <Form data={props.student._id}>
-    <Form.Check 
-    type="switch"
-    id="stuMod"
-    label={props.student.name}
+  return <Form>
+    <Form.Check
+      type="switch"
+      id={props.student._id}
+      label={props.student.name}
     />
   </Form>
 }
 
 export function CardTeaMod(props) {
-  return <Form data={props.teacher._id}>
-    <Form.Check 
-    type="switch"
-    id="stuMod"
-    label={props.teacher.name}
+  return <Form>
+    <Form.Check
+      type="switch"
+      id={props.teacher._id}
+      label={props.teacher.name}
     />
   </Form>
 }
