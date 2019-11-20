@@ -224,6 +224,24 @@ module.exports = app => {
       } else return res.json(students);
     });
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Get student by id api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // app.get("/api/student/:id", function(req, res) {
+  //   db.Student.findOne({ email: req.body.email }, function(error, students) {
+  //     console.log(error, students);
+  //     if (error) {
+  //       console.log(error);
+  //     } else return res.json(students);
+  //   });
+  // }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Get student by id api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  app.get("/api/student/:id", function(req, res) {
+    console.log("Get request for single student");
+    db.Student.findById(req.params.id, function(error, student) {
+      console.log(error, student);
+      if (error) {
+        console.log(error);
+      } else return res.json(student);
+    });
+  });
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> //Create student api route // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   app.post("/api/student/", function(req, res) {
@@ -404,6 +422,8 @@ module.exports = app => {
       .then(dbStudent => res.json(dbStudent))
       .catch(err => res.status(422).json(err));
   });
+
+  // ROUTE  NEEDED TO ADD STUDENT OBJECT ID TO TEACHER COLLECTION
 
   app.post("/api/teacher/studentadd/:id", (req, res) => {
     console.log("Request:", req.body);

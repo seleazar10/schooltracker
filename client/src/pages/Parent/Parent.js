@@ -4,45 +4,30 @@ import ParentJumbo from "../../components/ParentJumbo/ParentJumbo";
 import Tabs from "../../components/ParTabs/Tabs";
 import ParTracker from "../../components/ParTracker/ParTracker";
 import Footer from "../../components/Footer/Footer";
-import "./Parent.css"
+import "./Parent.css";
 
-import OpenWeather from "../../components/OpenWeather"
-
-
+import OpenWeather from "../../components/OpenWeather";
 
 // import AdminAncmt from "../../components/AdminAncmt/AdminAncmt";
 // import AdminSclClosure from "../../components/AdminSclClosure/AdminSclClosure";
 
-
-
-
 class Parent extends React.Component {
-    
+  render() {
+    console.log("props:", this.props);
+    return (
+      <div className="parentBg">
+        <ParentJumbo />
 
-    render() {
-        return (
+        <OpenWeather />
 
+        <ParTracker id={this.props.data._id} />
 
-            <div className="parentBg">
+        <Tabs />
 
-                <ParentJumbo />
-
-
-                <OpenWeather />
-
-                
-                <ParTracker />
-              
-
-                <Tabs />
-
-
-                <Footer />
-
-            </div>
-
-        )
-    }
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default Parent;

@@ -76,7 +76,7 @@ class Teacher extends React.Component {
   // }
 
   newSelection(e) {
-    console.log(e.target.name);
+    console.log("Target Name", e.target.name);
     console.log(e.target.value);
 
     this.setState({ [e.target.name]: e.target.value });
