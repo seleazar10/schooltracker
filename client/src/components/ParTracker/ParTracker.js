@@ -54,6 +54,12 @@ class ParTracker extends React.Component {
 
                         <div className="row text-center">
 
+                        <div className="col-lg-12 col-sm-12 text-center">
+
+                            <img src="https://i.imgur.com/PLgWNpd.png" alt="ratingpics"/>
+
+                            </div>
+
 
                             <div className="col-lg-6 col-sm-12 text-center">
                                 <p> <span className="dateParent"></span></p>
