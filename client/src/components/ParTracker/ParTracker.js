@@ -54,24 +54,6 @@ class ParTracker extends React.Component {
 
                         <div className="row text-center">
 
-                            <div className="col-lg-6 col-sm-12 text-center">
-
-                                <button type="button" className="btn btn-danger btn-sm pr-3 pl-3 m-2 colDesBtn disabled">1</button>
-                                <button type="button" className="btn btn-warning pr-3 pl-3 m-2 colDesBtn orang disabled">2</button>
-                                <button type="button" className="btn btn-warning pr-3 pl-3 m-2 colDesBtn disabled">3</button>
-                                <button type="button" className="btn btn-success pr-3 pl-3 m-2 colDesBtn disabled">4</button>
-                                <button type="button" className="btn btn-primary pr-3 pl-3 m-2 colDesBtn disabled">5</button>
-                            </div>
-
-
-                            <div>
-                                <button type="button" class="btn btn-primary">Primary</button>
-                                <button type="button" class="btn btn-secondary">Secondary</button>
-                                <button type="button" class="btn btn-success">Success</button>
-                                <button type="button" class="btn btn-danger">Danger</button>
-                                <button type="button" class="btn btn-warning">Warning</button>
-                                <button type="button" class="btn btn-info">Info</button>
-                            </div>
 
                             <div className="col-lg-6 col-sm-12 text-center">
                                 <p> <span className="dateParent"></span></p>
@@ -83,7 +65,7 @@ class ParTracker extends React.Component {
                             <div className="col-lg-6 col-sm-12 behaviorColor">
 
                                 <div className="colorAverage">
-                                    <p className="text-center colorNameDisplay"> ~~~~~~~~~Placeholder for dynamic color change upon receiving data (points and caluclate average) from mongo from teacher</p>
+                                    <p className="text-center colorNameDisplay"> </p>
 
                                 </div>
 
