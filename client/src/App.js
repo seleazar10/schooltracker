@@ -14,8 +14,6 @@ import Parent from "./pages/Parent/Parent";
 import Teacher from "./pages/Teacher/Teacher";
 import Wrapper from "./components/Wrapper";
 import Login from "./components/Login/Login";
-import TeacherProfile from "./components/Teacher/Profile";
-// import StudentProfile from "./components/Student/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 // import './App.css';
 
@@ -38,11 +36,11 @@ function App() {
       });
   }
 
-  console.log(currentUser);
+  console.log("Logged in as:", currentUser);
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar name={currentUser.name} />
         <Wrapper>
           <Route exact path="/" render={() => <Login updateUser={handleLogin} />} />
           <Route
@@ -57,9 +55,9 @@ function App() {
             <Teacher data={currentUser} />
           </PrivateRoute>
           {/* STUDENT PROFILE/EDIT */}
-          {/* <PrivateRoute path="/student/profile" user={currentUser}>
-            <StudentProfile user={currentUser} />
-          </PrivateRoute> */}
+          <PrivateRoute path="/student/profile" user={currentUser}>
+            <Parent data={currentUser} />
+          </PrivateRoute>
           <Route exact path="/teacher" component={Teacher} />
           <Route path="/chat" component={Chat} />
           <Route exact path="/admin" component={Admin} />
