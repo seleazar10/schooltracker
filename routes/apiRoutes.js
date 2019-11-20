@@ -54,9 +54,13 @@ module.exports = app => {
       }); // then find an teacher from the req.params.id // and update it's "studentIds" property with the _id of the new student
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // Works = Keep Me! //Add a teacherId to a specific student // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-  app.put("/api/studentadd/:id", function(req, res) {
+  app.put("/api/student/teacheradd/:id", function(req, res) {
     let id = req.params.id;
-    db.Student.updateOne({ _id: id }, { $push: req.body })
+    let data = req.body;
+    db.Student.findOneAndUpdate(
+      { _id: id },
+      { $push: { teachers: data.id } }
+    )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }); // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // //Create teacher // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -428,13 +432,24 @@ module.exports = app => {
   app.post("/api/teacher/studentadd/:id", (req, res) => {
     console.log("Request:", req.body);
     console.log("Id:", req.params.id);
-    let id = req.body.id;
-    db.Student.findById({ _id: id }).then(dbStudent => {
+    let studentId = req.body.id;
+    let teacherId = req.params.id;
+    db.Student.findById({ _id: studentId }).then(dbStudent => {
+      // Update Teacher
       db.Teacher.findByIdAndUpdate(
-        { _id: req.params.id },
+        { _id: teacherId },
         { $push: { students: dbStudent } }
       )
         .then(function(dbTeacher) {
+          // Update Student
+          db.Student.findByIdAndUpdate(
+            { _id: studentId },
+            { $push: { teachers: dbTeacher } }
+          )
+            .then(function(dbTeacher) { console.log('updated student with teacher')})
+            .catch(function(err) {
+              res.json(err);
+            });
           res.json(dbTeacher);
         })
         .catch(function(err) {

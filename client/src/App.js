@@ -42,7 +42,7 @@ function App() {
       <div>
         <Navbar name={currentUser.name} />
         <Wrapper>
-          {/* <Route exact path="/" component={Login} /> */}
+          <Route exact path="/" render={() => <Login updateUser={handleLogin} />} />
           <Route
             exact
             path="/login"

@@ -37,5 +37,11 @@ export default {
   //  Creates new student
   saveNewStudent: function (newStudent) {
     return axios.post("/api/student/", newStudent);
+  },
+  // Associate Teacher and Student
+  associateStudent: function (teacherId, studentId) {
+    return axios.post("/api/teacher/studentadd/" + teacherId, {
+      id: studentId
+    });
   }
 };
