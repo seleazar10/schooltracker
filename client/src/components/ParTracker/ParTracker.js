@@ -86,38 +86,16 @@ class ParTracker extends React.Component {
 
           <div className="card-body">
             <div className="row text-center">
-              <div className="col-lg-6 col-sm-12 text-center">
-                <button
-                  type="button"
-                  className="btn btn-danger pr-3 pl-3 m-2 colDesBtn disabled"
-                >
-                  1
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-warning pr-3 pl-3 m-2 colDesBtn orang disabled"
-                >
-                  2
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-warning pr-3 pl-3 m-2 colDesBtn disabled"
-                >
-                  3
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-success pr-3 pl-3 m-2 colDesBtn disabled"
-                >
-                  4
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary pr-3 pl-3 m-2 colDesBtn disabled"
-                >
-                  5
-                </button>
+
+              <div className="col-lg-12 col-sm-12 text-center">
+
+              <img src="https://i.imgur.com/PLgWNpd.png" alt="ratingpic"/>
+
+
               </div>
+              
+             
+
 
               <div className="col-lg-6 col-sm-12 text-center">
                 <p>
