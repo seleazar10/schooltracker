@@ -31,7 +31,7 @@ routes(app);
 // db = process.env.MONGODB_URI || "mongodb://localhost/schoolTracker";
 
 //Connect to the MongoDB with Heroku settings
-mongoose.connect("mongodb://localhost/schoolTracker", {
+mongoose.connect("mongodb://user1:password1@ds155774.mlab.com:55774/heroku_dv59b9dj", {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
