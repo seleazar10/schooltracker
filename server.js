@@ -7,7 +7,7 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./server/users
 const socketio = require('socket.io');
 const cors = require('cors');
 
-const router = require('./router');
+
 
 // Initialize Express
 const app = express();
@@ -23,7 +23,7 @@ var PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(router);
+
 //API routes
 routes(app);
 
