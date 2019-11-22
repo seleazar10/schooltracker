@@ -28,10 +28,10 @@ app.use(router);
 routes(app);
 
 //If deployed, use the deployed database. Otherwise us the local mongHeadlines database
-// db = process.env.MONGODB_URI || "mongodb://localhost/schoolTracker";
+//db = process.env.MONGODB_URI || "mongodb://localhost/schoolTracker";
 
 //Connect to the MongoDB with Heroku settings
-mongoose.connect("mongodb://user1:password1@ds155774.mlab.com:55774/heroku_dv59b9dj", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/schoolTracker", {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
