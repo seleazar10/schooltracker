@@ -16,6 +16,7 @@ class Box2 extends React.Component {
         };
 
         this.handleChangeSelectedStudent = this.handleChangeSelectedStudent.bind(this);
+        this.handleChangeSelectedTeacher = this.handleChangeSelectedTeacher.bind(this);
         this.handleSubmitModTeacher = this.handleSubmitModTeacher.bind(this);
     }
 
@@ -37,33 +38,43 @@ class Box2 extends React.Component {
         this.setState({ selectedStudent: event.target.value });
     }
 
+    handleChangeSelectedTeacher(event) {
+        this.setState({ selectedTeacher: event.target.value });
+    }
+
     handleSubmitModTeacher(event) {
         event.preventDefault();
-        console.log(event)
-
+        const { selectedTeacher, selectedStudent } = this.state;
+        API.associateStudent(selectedTeacher, selectedStudent)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
     }
 
     render() {
         const studentList = this.state.students.map(student => (
-            <CardStuMod value={this.state.selectedStudent} key={student._id} student={student} />
+            <CardStuMod value={this.state.selectedStudent} name='student' key={student._id} student={student} />
         ))
 
         const teacherList = this.state.teachers.map(teacher => (
-            <CardTeaMod key={teacher._id} teacher={teacher} />
+            <CardTeaMod key={teacher._id} teacher={teacher} name='teacher' />
         ))
 
         return (
-            <Container onSubmit={this.handleSubmitModTeacher}>
+            <Container>
                 <Container className="bg-light p-3">
-                    <h4>Choose one student:</h4>
-                    <div>{studentList}</div>
+                    <form onChange={this.handleChangeSelectedStudent}>
+                        <h4>Choose one student:</h4>
+                        <div>{studentList}</div>
+                    </form>
                 </Container>
                 <Container className="bg-light p-3">
+                    <form onChange={this.handleChangeSelectedTeacher}>
                     <h4>Choose one teacher:</h4>
-                    <div onChange={this.handleChangeSelectedStudent}>{teacherList}</div>
+                    <div>{teacherList}</div>
+                    </form>
                 </Container>
 
-                <Button variant="primary" type="submit" value="Submit">
+                <Button variant="primary" type="submit" value="Submit" onClick={this.handleSubmitModTeacher}>
                     Submit
                 </Button>
 

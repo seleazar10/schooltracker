@@ -39,7 +39,7 @@ function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link
-              to="/parent/profile"
+              to="/student/profile"
               className={
                 window.location.pathname === "/parent"
                   ? "nav-link active"
